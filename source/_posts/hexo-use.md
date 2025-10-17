@@ -1,5 +1,5 @@
 ---
-title: hexo_use
+title: hexo使用记录
 date: 2025-10-17 15:13:23
 tags:
 ---
