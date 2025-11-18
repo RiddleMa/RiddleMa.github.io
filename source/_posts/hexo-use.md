@@ -31,4 +31,20 @@ update link as:-->/.io//111.jpg
 npm uninstall hexo-asset-image
 npm install https://github.com/CodeFalling/hexo-asset-image
 ```
-- 等等
+- 命令`hexo d -g`报错
+```
+nothing to commit, working tree clean
+错误：fatal: unable to access 'https://github.com/***/': Recv failure: Connection was reset
+FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html
+Error: Spawn failed
+at ChildProcess.<anonymous> (D:\hexo_pro\blog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:51:21)
+at ChildProcess.emit (node:events:513:28)
+at ChildProcess.cp.emit (D:\hexo_pro\blog\node_modules\cross-spawn\lib\enoent.js:34:29)
+at Process.ChildProcess._handle.onexit (node:internal/child_process:293:12)
+```
+hexo是将`public`文件夹内容同步到服务器，需要先md文档转为html等格式，`public`未更新导致的。  
+重新构建`public`即可。  
+或者是网不好，重试。
+```
+hexo clean && hexo g && hexo s
+```
