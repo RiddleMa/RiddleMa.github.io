@@ -5,6 +5,10 @@ tags:
 ---
 ## 简介
 这里总结一下使用hexo的一些操作
+- hexo是快速构建博客的工具
+- 目前使用git同时管理项目代码和部署网页
+  - 项目代码就是整个项目的同步，对应master分支
+  - 部署网页是hexo展示用的web页面，对应hexo分支
 
 ## 多终端使用
 参考：[备份和多终端更新hexo博客步骤](https://blog.csdn.net/shile/article/details/78714189)  
@@ -13,7 +17,11 @@ tags:
 ## 常用命令
 - 新增博客推送并同步仓库（向两个分支都推送，主分支master用来展示网页，hexo分支用来备份）
 ```commandline
-//进入user.github.io文件夹,应是hexo分支
+//进入user.github.io文件夹，对应本地hexo/blog目录
+# 切换到hexo分支
+git branch
+# 切换到hexo分支
+git switch/checkout hexo
 # git pull origin hexo //本地和远端的融合
 # hexo new post "new post name"  //写新文章
 # git add source
