@@ -1,5 +1,5 @@
 ---
-title: yolo_use1
+title: YOLO使用记录
 date: 2025-11-13 17:59:26
 tags:
 ---

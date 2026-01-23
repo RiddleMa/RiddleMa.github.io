@@ -1,5 +1,5 @@
 ---
-title: Wax moth
+title: 神器的蜡虫
 date: 2025-11-13 17:19:29
 tags: 环保
 ---

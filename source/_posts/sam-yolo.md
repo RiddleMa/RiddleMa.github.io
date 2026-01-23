@@ -1,5 +1,5 @@
 ---
-title: sam_yolo
+title: Sam+YOLO文献调研
 date: 2026-01-23 14:39:56
 tags:
 ---
