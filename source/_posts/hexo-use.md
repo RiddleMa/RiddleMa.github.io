@@ -35,6 +35,7 @@ git commit -m "xxx"
 git push origin hexo  //备份到hexo分支
 ```
 ## bug记录
+- 上传后博客更新需要等待几分钟，github博客重加载需要缓冲时间
 - 图片加载不出来，修改图片时链接出现下面的记录
 ```commandline
 update link as:-->/.io//111.jpg
@@ -43,6 +44,11 @@ update link as:-->/.io//111.jpg
 ```
 npm uninstall hexo-asset-image
 npm install https://github.com/CodeFalling/hexo-asset-image
+```
+- 加载图片
+```
+{% asset_img example.jpg This is an example image %}
+{% asset_img "spaced asset.jpg" "spaced title" %}
 ```
 - 命令`hexo d -g`报错
 ```
