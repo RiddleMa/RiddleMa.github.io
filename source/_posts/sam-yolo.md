@@ -11,12 +11,21 @@ tags:
 - 我的应用场景是半导体的缺陷检测，SAM并没有这方面的预训练数据，所以直接使用效果不佳，YOLO也有同样的问题，虽然快速，但是预测失效（**要验证**）。
 
 ## 文献列表
-- [简介](#简介)
-- [文献列表](#文献列表)
-- [分文章介绍](#分文章介绍)
-  - [Automatic Lung Segmentation in Chest X-Ray Images Using SAM With Prompts From YOLO](#automatic-lung-segmentation-in-chest-x-ray-images-using-sam-with-prompts-from-yolo)
-  - [Intraoperative Glioma Segmentation with YOLO + SAM for Improved Accuracy in Tumor Resection](#intraoperative-glioma-segmentation-with-yolo--sam-for-improved-accuracy-in-tumor-resection)
-  - [Multi Kernel Estimation based Object Segmentation](#multi-kernel-estimation-based-object-segmentation)
+- [Automatic Lung Segmentation in Chest X-Ray Images Using SAM With Prompts From YOLO]
+- (#article-1)  这里使用索引会导致全格式改变
+
+- [Intraoperative Glioma Segmentation with YOLO + SAM for Improved Accuracy in Tumor Resection]
+
+- [Nuclei Segmentation in Hepatocytes Using YOLO and SAM]
+
+- Quantifying Bubble-Induced Diffusion Resistance Through Real-Time Sam-Assisted Yolo High Density Bubble Detection Algorithm
+- Self-Prompting Polyp Segmentation in Colonoscopy using Hybrid Yolo-SAM 2 Model
+- Soybean pod and seed counting in both outdoor fields and  indoor laboratories using unions of deep neural networks
+- Yolo-MLSAM: SAM Based Breast Cancer Microcalcification Cluster-Segmentation Method
+- YS3AM: Adaptive 3D Reconstruction and Harvesting  Target Detection for Clustered Green Asparagus
+
+
+
 ## 分文章介绍
 <a id="article-1"></a>
 ### Automatic Lung Segmentation in Chest X-Ray Images Using SAM With Prompts From YOLO
