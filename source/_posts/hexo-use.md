@@ -7,8 +7,8 @@ tags:
 这里总结一下使用hexo的一些操作
 - hexo是快速构建博客的工具
 - 目前使用git同时管理项目代码和部署网页
-  - 项目代码就是整个项目的同步，对应master分支
-  - 部署网页是hexo展示用的web页面，对应hexo分支
+  - 项目代码就是整个项目的同步，对应hexo分支
+  - 部署网页是hexo展示用的web页面，对应master分支
 
 ## 多终端使用
 参考：[备份和多终端更新hexo博客步骤](https://blog.csdn.net/shile/article/details/78714189)  
@@ -16,18 +16,23 @@ tags:
 
 ## 常用命令
 - 新增博客推送并同步仓库（向两个分支都推送，主分支master用来展示网页，hexo分支用来备份）
+- 首先是同步仓库，以及使用hexo推送网页
 ```commandline
-//进入user.github.io文件夹，对应本地hexo/blog目录
-# 切换到hexo分支
+// 进入user.github.io文件夹，对应本地hexo/blog目录
+// 切换到hexo分支
 git branch
-# 切换到hexo分支
-git switch/checkout hexo
-# git pull origin hexo //本地和远端的融合
-# hexo new post "new post name"  //写新文章
-# git add source
-# git commit -m "xxx"
-# git push origin hexo  //备份
-# hexo d -g  //部署
+// 切换到hexo分支
+git switch hexo
+git checkout hexo   // 或者
+git pull origin hexo //本地和远端的融合
+hexo new post "new post name"  //写新文章
+hexo d -g  //部署，这个是推送到master分支
+```
+- 下面是推送备份到服务器
+```
+git add source
+git commit -m "xxx"
+git push origin hexo  //备份到hexo分支
 ```
 ## bug记录
 - 图片加载不出来，修改图片时链接出现下面的记录
