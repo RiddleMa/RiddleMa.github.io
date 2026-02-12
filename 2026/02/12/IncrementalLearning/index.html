@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"riddlema.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="背景 SAM是一种基于预训练的图像大模型，使用该模型能够对图像相关的任务进行迁移使用。针对特殊领域的图像分割任务，SamAdapte被发明出来用来对专用数据的分割任务进行加强。 在这个模型的应用过程中，频繁出现新的数据，这些数据的特征与训练数据的特征不尽相同。导致在第一批数据上训练的模型参数，在后面批次数据上的表现性能不佳。需要找到一种方法，能够同时对新旧数据具有良好的表现。 针对这个问题，最简单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="增量学习的方法总结">
+<meta property="og:url" content="https://riddlema.github.io/2026/02/12/IncrementalLearning/index.html">
+<meta property="og:site_name" content="Riddle的博客">
+<meta property="og:description" content="背景 SAM是一种基于预训练的图像大模型，使用该模型能够对图像相关的任务进行迁移使用。针对特殊领域的图像分割任务，SamAdapte被发明出来用来对专用数据的分割任务进行加强。 在这个模型的应用过程中，频繁出现新的数据，这些数据的特征与训练数据的特征不尽相同。导致在第一批数据上训练的模型参数，在后面批次数据上的表现性能不佳。需要找到一种方法，能够同时对新旧数据具有良好的表现。 针对这个问题，最简单">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-12T07:09:28.000Z">
+<meta property="article:modified_time" content="2026-02-12T07:12:20.142Z">
+<meta property="article:author" content="Riddle Ma">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://riddlema.github.io/2026/02/12/IncrementalLearning/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://riddlema.github.io/2026/02/12/IncrementalLearning/","path":"2026/02/12/IncrementalLearning/","title":"增量学习的方法总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>增量学习的方法总结 | Riddle的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Riddle的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E6%96%B9%E6%A1%88%EF%BC%9A%E6%B7%B7%E5%90%88%E9%87%8D%E6%94%BE%EF%BC%88Replay%EF%BC%89-%E5%A2%9E%E9%87%8F%E5%BE%AE%E8%B0%83"><span class="nav-number">2.</span> <span class="nav-text">一、基础方案：混合重放（Replay）+ 增量微调</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.</span> <span class="nav-text">1. 具体实现步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">2. 代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%85%B3%E9%94%AE%E7%BB%86%E8%8A%82%E8%AF%B4%E6%98%8E"><span class="nav-number">2.3.</span> <span class="nav-text">3. 关键细节说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BF%9B%E9%98%B6%E6%96%B9%E6%A1%88%EF%BC%9A%E5%BC%B9%E6%80%A7%E6%9D%83%E9%87%8D%E5%B7%A9%E5%9B%BA%EF%BC%88EWC%EF%BC%89-Adapter"><span class="nav-number">3.</span> <span class="nav-text">二、进阶方案：弹性权重巩固（EWC）+ Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91"><span class="nav-number">3.1.</span> <span class="nav-text">1. 核心逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%EF%BC%88EWC-%E6%8D%9F%E5%A4%B1%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">2. 核心代码片段（EWC 损失）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9C%80%E4%BC%98%E6%96%B9%E6%A1%88%EF%BC%9A%E5%A4%9A%E4%BB%BB%E5%8A%A1-Adapter-%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1"><span class="nav-number">4.</span> <span class="nav-text">三、最优方案：多任务 Adapter + 动态路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="nav-number">4.1.</span> <span class="nav-text">1. 核心思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.2.</span> <span class="nav-text">2. 核心代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">关键注意点</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Riddle Ma</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/02/12/IncrementalLearning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="增量学习的方法总结 | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          增量学习的方法总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-02-12 15:09:28 / 修改时间：15:12:20" itemprop="dateCreated datePublished" datetime="2026-02-12T15:09:28+08:00">2026-02-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>SAM是一种基于预训练的图像大模型，使用该模型能够对图像相关的任务进行迁移使用。<br>针对特殊领域的图像分割任务，SamAdapte被发明出来用来对专用数据的分割任务进行加强。</li>
+<li>在这个模型的应用过程中，频繁出现新的数据，这些数据的特征与训练数据的特征不尽相同。<br>导致在第一批数据上训练的模型参数，在后面批次数据上的表现性能不佳。<br>需要找到一种方法，能够同时对新旧数据具有良好的表现。</li>
+<li>针对这个问题，最简单的解决办法就是把新旧数据都放入训练集中，同时参与训练。<br>但是训练的成本太高了，原训练数据集已经很大了，再一批批地加入新数据，会严重增加训练成本，需要的时间也非常长。</li>
+<li>所以怎么同时保证兼容性和高效性？</li>
+</ul>
+<hr>
+<h2 id="一、基础方案：混合重放（Replay）-增量微调"><a href="#一、基础方案：混合重放（Replay）-增量微调" class="headerlink" title="一、基础方案：混合重放（Replay）+ 增量微调"></a>一、基础方案：混合重放（Replay）+ 增量微调</h2><p>这是最易落地的方案，核心是每次加入新数据时，从旧数据中采样一部分与新数据混合训练，避免模型完全遗忘旧数据。</p>
+<h3 id="1-具体实现步骤"><a href="#1-具体实现步骤" class="headerlink" title="1. 具体实现步骤"></a>1. 具体实现步骤</h3><ol>
+<li><strong>数据管理</strong>：维护一个 “旧数据缓存池”，保存第一批（及后续）数据的代表性样本（无需全量，按类别 &#x2F; 分布采样）；</li>
+<li><strong>混合训练</strong>：新数据到来时，将新数据与缓存池中的旧数据按比例（如 7:3）混合，用 SamAdapter 继续微调；</li>
+<li><strong>参数更新</strong>：沿用 SamAdapter 的低秩适配（LoRA&#x2F;Adapter）机制，仅更新适配层参数，冻结 SAM 主干，减少遗忘风险。</li>
+</ol>
+<h3 id="2-代码示例"><a href="#2-代码示例" class="headerlink" title="2. 代码示例"></a>2. 代码示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader, ConcatDataset</span><br><span class="line"><span class="keyword">from</span> sam_adapter <span class="keyword">import</span> SamAdapter  <span class="comment"># 假设你已有的SamAdapter封装类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">IncrementalSamAdapter</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, sam_adapter_model, cache_size=<span class="number">1000</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.model = sam_adapter_model  <span class="comment"># 预训练好的SamAdapter模型</span></span><br><span class="line">        <span class="variable language_">self</span>.old_data_cache = []  <span class="comment"># 旧数据缓存池</span></span><br><span class="line">        <span class="variable language_">self</span>.cache_size = cache_size  <span class="comment"># 缓存池最大容量</span></span><br><span class="line">        <span class="variable language_">self</span>.device = torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.model.to(<span class="variable language_">self</span>.device)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_cache</span>(<span class="params">self, old_dataset</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;更新旧数据缓存池（按类别均匀采样，避免类别失衡）&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 简单采样逻辑：随机选cache_size个样本，可替换为按类别分层采样</span></span><br><span class="line">        sample_indices = torch.randperm(<span class="built_in">len</span>(old_dataset))[:<span class="variable language_">self</span>.cache_size]</span><br><span class="line">        <span class="variable language_">self</span>.old_data_cache = [old_dataset[i] <span class="keyword">for</span> i <span class="keyword">in</span> sample_indices]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">train_with_new_data</span>(<span class="params">self, new_dataset, lr=<span class="number">1e-4</span>, epochs=<span class="number">5</span>, mix_ratio=<span class="number">0.3</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        增量训练：混合旧数据缓存和新数据</span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            new_dataset: 新批次数据</span></span><br><span class="line"><span class="string">            lr: 学习率（增量训练建议更小）</span></span><br><span class="line"><span class="string">            epochs: 训练轮数</span></span><br><span class="line"><span class="string">            mix_ratio: 旧数据占总训练数据的比例</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 1. 构建混合数据集</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(<span class="variable language_">self</span>.old_data_cache) &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 按比例采样旧数据</span></span><br><span class="line">            old_sample_num = <span class="built_in">int</span>(<span class="built_in">len</span>(new_dataset) * mix_ratio / (<span class="number">1</span> - mix_ratio))</span><br><span class="line">            old_sample_indices = torch.randperm(<span class="built_in">len</span>(<span class="variable language_">self</span>.old_data_cache))[:old_sample_num]</span><br><span class="line">            old_samples = [<span class="variable language_">self</span>.old_data_cache[i] <span class="keyword">for</span> i <span class="keyword">in</span> old_sample_indices]</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 拼接新旧数据</span></span><br><span class="line">            mixed_dataset = ConcatDataset([old_samples, new_dataset])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 首次训练：仅用新数据，同时缓存</span></span><br><span class="line">            mixed_dataset = new_dataset</span><br><span class="line">            <span class="variable language_">self</span>.update_cache(new_dataset)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 2. 构建数据加载器</span></span><br><span class="line">        train_loader = DataLoader(mixed_dataset, batch_size=<span class="number">8</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 3. 增量训练（仅更新Adapter层，冻结SAM主干）</span></span><br><span class="line">        optimizer = torch.optim.Adam(<span class="variable language_">self</span>.model.adapter_parameters(), lr=lr)</span><br><span class="line">        criterion = nn.CrossEntropyLoss()  <span class="comment"># 根据你的任务替换损失函数</span></span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.model.train()</span><br><span class="line">        <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">            total_loss = <span class="number">0.0</span></span><br><span class="line">            <span class="keyword">for</span> batch <span class="keyword">in</span> train_loader:</span><br><span class="line">                images, labels = batch</span><br><span class="line">                images, labels = images.to(<span class="variable language_">self</span>.device), labels.to(<span class="variable language_">self</span>.device)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 前向传播</span></span><br><span class="line">                outputs = <span class="variable language_">self</span>.model(images)</span><br><span class="line">                loss = criterion(outputs, labels)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 反向传播+更新</span></span><br><span class="line">                optimizer.zero_grad()</span><br><span class="line">                loss.backward()</span><br><span class="line">                optimizer.step()</span><br><span class="line"></span><br><span class="line">                total_loss += loss.item()</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Epoch <span class="subst">&#123;epoch+<span class="number">1</span>&#125;</span>/<span class="subst">&#123;epochs&#125;</span>, Loss: <span class="subst">&#123;total_loss/<span class="built_in">len</span>(train_loader):<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 4. 更新缓存池（将新数据加入缓存，保持缓存代表性）</span></span><br><span class="line">        <span class="variable language_">self</span>.update_cache(ConcatDataset([<span class="variable language_">self</span>.old_data_cache, new_dataset]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------------------- 使用示例 ----------------------</span></span><br><span class="line"><span class="comment"># 1. 初始化SamAdapter模型（假设已加载预训练权重）</span></span><br><span class="line">base_sam_adapter = SamAdapter(pretrained_path=<span class="string">&quot;sam_vit_h.pth&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 初始化增量学习封装类</span></span><br><span class="line">incremental_model = IncrementalSamAdapter(base_sam_adapter, cache_size=<span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 第一批数据训练</span></span><br><span class="line">first_dataset = YourFirstDataset()  <span class="comment"># 替换为你的第一批数据集</span></span><br><span class="line">incremental_model.train_with_new_data(first_dataset)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 第二批新数据训练（自动混合第一批数据）</span></span><br><span class="line">second_dataset = YourSecondDataset()  <span class="comment"># 替换为你的第二批数据集</span></span><br><span class="line">incremental_model.train_with_new_data(second_dataset, lr=<span class="number">5e-5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 后续新数据重复步骤4即可</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-关键细节说明"><a href="#3-关键细节说明" class="headerlink" title="3. 关键细节说明"></a>3. 关键细节说明</h3><ul>
+<li><strong>缓存池大小</strong>：无需缓存全量旧数据，建议按 “新数据量 × 混合比例 &#x2F;(1 - 混合比例)” 设置，避免内存溢出；</li>
+<li><strong>学习率</strong>：增量训练的学习率建议比首次训练小（如 5e-5），减少对旧知识的覆盖；</li>
+<li><strong>混合比例</strong>：旧数据占比建议 20%-40%，比例过高会增加训练成本，过低则易遗忘。</li>
+</ul>
+<h2 id="二、进阶方案：弹性权重巩固（EWC）-Adapter"><a href="#二、进阶方案：弹性权重巩固（EWC）-Adapter" class="headerlink" title="二、进阶方案：弹性权重巩固（EWC）+ Adapter"></a>二、进阶方案：弹性权重巩固（EWC）+ Adapter</h2><p>如果混合重放的内存成本过高（如数据量极大），可采用弹性权重巩固（EWC） 机制：在学习新数据时，对旧数据中重要的模型参数添加正则化约束，阻止其大幅变化，从而保留旧知识。</p>
+<h3 id="1-核心逻辑"><a href="#1-核心逻辑" class="headerlink" title="1. 核心逻辑"></a>1. 核心逻辑</h3><ol>
+<li>训练第一批数据后，计算模型参数在旧数据上的 “重要性”（参数的 Fisher 信息矩阵）；</li>
+<li>训练新数据时，损失函数加入 “参数偏离惩罚项”：对重要参数，限制其与旧数据训练后的取值偏差；</li>
+<li>结合 Adapter 机制，仅对 Adapter 层参数应用 EWC 约束，进一步降低计算成本。</li>
+</ol>
+<h3 id="2-核心代码片段（EWC-损失）"><a href="#2-核心代码片段（EWC-损失）" class="headerlink" title="2. 核心代码片段（EWC 损失）"></a>2. 核心代码片段（EWC 损失）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">compute_fisher_information</span>(<span class="params">model, dataset, num_batches=<span class="number">10</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;计算Fisher信息矩阵（衡量参数重要性）&quot;&quot;&quot;</span></span><br><span class="line">    fisher = &#123;n: torch.zeros_like(p) <span class="keyword">for</span> n, p <span class="keyword">in</span> model.adapter_parameters().items()&#125;</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    loader = DataLoader(dataset, batch_size=<span class="number">8</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i, batch <span class="keyword">in</span> <span class="built_in">enumerate</span>(loader):</span><br><span class="line">        <span class="keyword">if</span> i &gt;= num_batches:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        images, labels = batch</span><br><span class="line">        images, labels = images.to(model.device), labels.to(model.device)</span><br><span class="line">        </span><br><span class="line">        model.zero_grad()</span><br><span class="line">        outputs = model(images)</span><br><span class="line">        loss = nn.CrossEntropyLoss()(outputs, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 累积梯度平方（近似Fisher信息）</span></span><br><span class="line">        <span class="keyword">for</span> n, p <span class="keyword">in</span> model.adapter_parameters().items():</span><br><span class="line">            <span class="keyword">if</span> p.grad <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                fisher[n] += (p.grad **<span class="number">2</span>) / num_batches</span><br><span class="line">    <span class="keyword">return</span> fisher</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ewc_loss</span>(<span class="params">model, old_params, fisher, lambda_ewc=<span class="number">1e3</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;EWC正则化损失：惩罚参数偏离旧值&quot;&quot;&quot;</span></span><br><span class="line">    loss = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> n, p <span class="keyword">in</span> model.adapter_parameters().items():</span><br><span class="line">        loss += (fisher[n] * (p - old_params[n])** <span class="number">2</span>).<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">return</span> lambda_ewc * loss</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练新数据时，损失函数改为：</span></span><br><span class="line">total_loss = criterion(outputs, labels) + ewc_loss(model, old_params, fisher)</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、最优方案：多任务-Adapter-动态路由"><a href="#三、最优方案：多任务-Adapter-动态路由" class="headerlink" title="三、最优方案：多任务 Adapter + 动态路由"></a>三、最优方案：多任务 Adapter + 动态路由</h2><p>如果后续会持续加入多批次 &#x2F; 多领域数据，可采用多任务 Adapter 架构：为每一批数据训练一个独立的 Adapter 分支，推理时通过 “动态路由” 选择适配的分支（或融合多分支输出），从根本上避免遗忘。</p>
+<h3 id="1-核心思路"><a href="#1-核心思路" class="headerlink" title="1. 核心思路"></a>1. 核心思路</h3><ol>
+<li>为每一批新数据创建一个独立的 Adapter 层（如 LoRA 层），保存在模型中；</li>
+<li>训练时仅更新当前批次对应的 Adapter 分支，不改动其他分支和主干；</li>
+<li>推理时：<ul>
+<li>若输入数据可归属到某一批次，直接用对应 Adapter；</li>
+<li>若无法归属，融合所有 Adapter 分支的输出（如加权平均）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-核心代码示例"><a href="#2-核心代码示例" class="headerlink" title="2. 核心代码示例"></a>2. 核心代码示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MultiAdapterSam</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, base_sam</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.base_sam = base_sam  <span class="comment"># 冻结的SAM主干</span></span><br><span class="line">        <span class="variable language_">self</span>.adapters = nn.ModuleDict()  <span class="comment"># 存储各批次的Adapter：key=批次ID，value=Adapter层</span></span><br><span class="line">        <span class="variable language_">self</span>.current_adapter_id = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_adapter</span>(<span class="params">self, adapter_id</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;为新批次数据添加独立的Adapter&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> adapter_id <span class="keyword">not</span> <span class="keyword">in</span> <span class="variable language_">self</span>.adapters:</span><br><span class="line">            <span class="comment"># 创建新的Adapter（以LoRA为例）</span></span><br><span class="line">            new_adapter = LoRAAdapter(dim=<span class="variable language_">self</span>.base_sam.feat_dim, r=<span class="number">8</span>)  <span class="comment"># 替换为你的Adapter实现</span></span><br><span class="line">            <span class="variable language_">self</span>.adapters[adapter_id] = new_adapter</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_active_adapter</span>(<span class="params">self, adapter_id</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;设置当前训练/推理的Adapter&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.current_adapter_id = adapter_id</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 1. SAM主干提取特征</span></span><br><span class="line">        feat = <span class="variable language_">self</span>.base_sam.extract_feat(x)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 2. 适配层处理</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.current_adapter_id <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> <span class="variable language_">self</span>.current_adapter_id <span class="keyword">in</span> <span class="variable language_">self</span>.adapters:</span><br><span class="line">            <span class="comment"># 使用指定的Adapter</span></span><br><span class="line">            feat = <span class="variable language_">self</span>.adapters[<span class="variable language_">self</span>.current_adapter_id](feat)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 融合所有Adapter输出（推理时适配全量数据）</span></span><br><span class="line">            adapter_outputs = [adapter(feat) <span class="keyword">for</span> adapter <span class="keyword">in</span> <span class="variable language_">self</span>.adapters.values()]</span><br><span class="line">            feat = torch.stack(adapter_outputs).mean(dim=<span class="number">0</span>)  <span class="comment"># 简单平均，可替换为加权融合</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 3. 预测头输出</span></span><br><span class="line">        output = <span class="variable language_">self</span>.base_sam.head(feat)</span><br><span class="line">        <span class="keyword">return</span> output</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------------------- 使用示例 ----------------------</span></span><br><span class="line"><span class="comment"># 1. 初始化多Adapter模型</span></span><br><span class="line">base_sam = load_pretrained_sam(<span class="string">&quot;sam_vit_h.pth&quot;</span>)</span><br><span class="line">multi_adapter_model = MultiAdapterSam(base_sam)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 第一批数据训练</span></span><br><span class="line">multi_adapter_model.add_adapter(adapter_id=<span class="string">&quot;batch_1&quot;</span>)</span><br><span class="line">multi_adapter_model.set_active_adapter(<span class="string">&quot;batch_1&quot;</span>)</span><br><span class="line">train_model(multi_adapter_model, first_dataset)  <span class="comment"># 仅训练batch_1对应的Adapter</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 第二批数据训练</span></span><br><span class="line">multi_adapter_model.add_adapter(adapter_id=<span class="string">&quot;batch_2&quot;</span>)</span><br><span class="line">multi_adapter_model.set_active_adapter(<span class="string">&quot;batch_2&quot;</span>)</span><br><span class="line">train_model(multi_adapter_model, second_dataset)  <span class="comment"># 仅训练batch_2对应的Adapter</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 推理（自动融合所有Adapter，适配全量数据）</span></span><br><span class="line">multi_adapter_model.set_active_adapter(<span class="literal">None</span>)</span><br><span class="line">preds = multi_adapter_model(test_images)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>核心方案选择如下：</p>
+<ol>
+<li><strong>快速落地</strong>：优先用「混合重放 + 增量微调」，代码改动小，仅需维护旧数据缓存池，适合中小规模数据；</li>
+<li><strong>内存受限</strong>：选择「EWC+Adapter」，无需缓存大量旧数据，通过参数正则化减少遗忘；</li>
+<li><strong>长期扩展</strong>：推荐「多任务 Adapter + 动态路由」，为每批数据独立训练 Adapter，无遗忘风险，适配持续新增的数据。</li>
+</ol>
+<h2 id="关键注意点"><a href="#关键注意点" class="headerlink" title="关键注意点"></a>关键注意点</h2><ul>
+<li>无论哪种方案，都需<strong>冻结SAM 主干</strong>，仅更新 Adapter 层，既降低计算成本，也减少旧知识遗忘；</li>
+<li>增量训练的学习率需逐步降低（如每次新数据训练时学习率减半），避免参数震荡；</li>
+<li>缓存池 &#x2F; Adapter 分支需定期清理冗余数据 &#x2F; 分支，避免内存 &#x2F; 参数膨胀。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/02/12/MSRFM/" rel="prev" title="Achieving the Defect Transfer Detection of  Semiconductor Wafer by a Novel Prototype  Learning-Based Semantic Segmentation Network">
+                  <i class="fa fa-angle-left"></i> Achieving the Defect Transfer Detection of  Semiconductor Wafer by a Novel Prototype  Learning-Based Semantic Segmentation Network
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Riddle Ma</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
