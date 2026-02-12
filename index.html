@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/12/SAM-use/" class="post-title-link" itemprop="url">SAM_use</a>
+          <a href="/2026/02/12/SAM-use/" class="post-title-link" itemprop="url">SAM的原理和使用方法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -187,8 +187,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2026-02-12 14:57:45" itemprop="dateCreated datePublished" datetime="2026-02-12T14:57:45+08:00">2026-02-12</time>
+      <time title="创建时间：2026-02-12 14:57:45 / 修改时间：15:01:41" itemprop="dateCreated datePublished" datetime="2026-02-12T14:57:45+08:00">2026-02-12</time>
     </span>
 
   
@@ -201,7 +202,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <blockquote>
+<p>SAM已经更新到SAM3了，这里是SAM2的使用介绍<br>SAM2更新过一版，最终版本是SAM2.1版<br>SAM3的使用方法类似，后面研究下；</p>
+</blockquote>
+<p>SAM2自带三个接口文件：</p>
+<ul>
+<li>build_sam，模型构建器</li>
+<li>sam2_image_predictor，交互式分割预测</li>
+<li>automatic_mask_generator，全自动掩码生成器</li>
+</ul>
+<p>现在分别介绍：</p>
+<h2 id="build-sam"><a href="#build-sam" class="headerlink" title="build_sam"></a>build_sam</h2><ul>
+<li>模型构建函数，用于对模型进行初始化；</li>
+<li>可以指定配置文件<code>sam2.1_hiera_t.yaml</code>和参数文件<code>sam2.1_hiera_tiny.pt</code>；</li>
+</ul>
+<h2 id="sam2-image-predictor"><a href="#sam2-image-predictor" class="headerlink" title="sam2_image_predictor"></a>sam2_image_predictor</h2><ul>
+<li>交互式预测器，需要用户提供 “提示信息”（点、框）来定位目标。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sam2.sam2_image_predictor <span class="keyword">import</span> SAM2ImagePredictor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化模型</span></span><br><span class="line">sam2_model = build_sam2(</span><br><span class="line">    config_file=<span class="string">&quot;sam2_configs/sam2_hiera_l.yaml&quot;</span>,  <span class="comment"># 模型配置文件</span></span><br><span class="line">    checkpoint=<span class="string">&quot;sam2_hiera_large.pt&quot;</span>,             <span class="comment"># 预训练权重</span></span><br><span class="line">    device=torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化预测器（传入已构建的 SAM2 模型）</span></span><br><span class="line">predictor = SAM2ImagePredictor(sam2_model)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载图片并编码</span></span><br><span class="line">image = cv2.imread(<span class="string">&quot;test.jpg&quot;</span>)</span><br><span class="line">predictor.set_image(image)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入提示：比如在 (x=100, y=200) 点一个前景点（目标位置）</span></span><br><span class="line">input_point = np.array([[<span class="number">100</span>, <span class="number">200</span>]])</span><br><span class="line">input_label = np.array([<span class="number">1</span>])  <span class="comment"># 1=前景，0=背景</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成掩码</span></span><br><span class="line">masks, scores, logits = predictor.predict(</span><br><span class="line">    point_coords=input_point,</span><br><span class="line">    point_labels=input_label,</span><br><span class="line">    box = <span class="literal">None</span>,     <span class="comment"># 也可以指定锚框</span></span><br><span class="line">    multimask_output=<span class="literal">False</span>,  <span class="comment"># 只返回最优掩码</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li>这里支持两种形式的指令，<code>point_coords</code>为点，<code>box</code>为锚框，也可以一起使用；</li>
+<li><code>point_coords</code>的大小为(M,2)，<code>box</code>的大小为(1,4)；</li>
+<li><code>point_labels</code>确定点选的是前景&#x2F;背景，0的话就是反选；</li>
+<li>同时使用两种标记的方式<ul>
+<li>框定位目标大致范围 + 点标记目标核心区域（如分割人物时，框住全身 + 点标记脸部）；</li>
+<li>框定位目标 + 点标记背景（label&#x3D;0），排除干扰区域。</li>
+</ul>
+</li>
+</ul>
+<h2 id="automatic-mask-generator"><a href="#automatic-mask-generator" class="headerlink" title="automatic_mask_generator"></a>automatic_mask_generator</h2><p>基于 SAM2 模型的全自动掩码生成器，无需用户提示，自动遍历图片并分割所有可见物体。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sam2.sam2_automatic_mask_generator <span class="keyword">import</span> SAM2AutomaticMaskGenerator</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化自动掩码生成器</span></span><br><span class="line">mask_generator = SAM2AutomaticMaskGenerator(</span><br><span class="line">    sam2_model,</span><br><span class="line">    points_per_side=<span class="number">32</span>,  <span class="comment"># 每边采样点数（越多分割越细，速度越慢）</span></span><br><span class="line">    pred_iou_thresh=<span class="number">0.86</span>, <span class="comment"># 过滤低IOU掩码</span></span><br><span class="line">    stability_score_thresh=<span class="number">0.92</span>,  <span class="comment"># 过滤不稳定掩码</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全自动生成所有物体的掩码</span></span><br><span class="line">masks = mask_generator.generate(image)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果：masks 是列表，每个元素包含 mask（掩码）、bbox（边界框）、score（置信度）等</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;自动分割出 <span class="subst">&#123;<span class="built_in">len</span>(masks)&#125;</span> 个物体&quot;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这种方法原理是使用采样点进行逐点预测，最后合并所有分割的结果；</li>
+<li>采样点越多，速度越慢（实测很慢）；</li>
+</ul>
+
       
     </div>
 
