@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"riddlema.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介开个新贴，记录一下半导体中常见的缺陷类型，使用公开的数据和文献进行整理，不定期更新。 粒子缺陷，在半导体制造中，指的是在制造过程中产生的微小颗粒或杂质。这些缺陷可能源自原材料的不纯、设备磨损、环境污染或操作失误等多种因素。粒子缺陷对半导体器件的性能和质量有着显著影响，因此，对其进行深入研究和有效控制极为关键。 这里列出所有的缺陷类别：     缺陷类型中文 缺陷类型英文 图像描述 解释">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的半导体缺陷类型总结">
+<meta property="og:url" content="https://riddlema.github.io/2026/02/26/defect-type/index.html">
+<meta property="og:site_name" content="Riddle的博客">
+<meta property="og:description" content="简介开个新贴，记录一下半导体中常见的缺陷类型，使用公开的数据和文献进行整理，不定期更新。 粒子缺陷，在半导体制造中，指的是在制造过程中产生的微小颗粒或杂质。这些缺陷可能源自原材料的不纯、设备磨损、环境污染或操作失误等多种因素。粒子缺陷对半导体器件的性能和质量有着显著影响，因此，对其进行深入研究和有效控制极为关键。 这里列出所有的缺陷类别：     缺陷类型中文 缺陷类型英文 图像描述 解释">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://riddlema.github.io/2026/02/26/defect-type/defect_list1.jpg">
+<meta property="og:image" content="https://riddlema.github.io/2026/02/26/defect-type/defect_list2.jpg">
+<meta property="og:image" content="https://riddlema.github.io/2026/02/26/defect-type/defect_list3.jpg">
+<meta property="og:image" content="https://riddlema.github.io/2026/02/26/defect-type/defect_list4.jpg">
+<meta property="article:published_time" content="2026-02-26T01:46:27.000Z">
+<meta property="article:modified_time" content="2026-02-28T08:55:05.280Z">
+<meta property="article:author" content="Riddle Ma">
+<meta property="article:tag" content="半导体">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://riddlema.github.io/2026/02/26/defect-type/defect_list1.jpg">
+
+
+<link rel="canonical" href="https://riddlema.github.io/2026/02/26/defect-type/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://riddlema.github.io/2026/02/26/defect-type/","path":"2026/02/26/defect-type/","title":"常见的半导体缺陷类型总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>常见的半导体缺陷类型总结 | Riddle的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Riddle的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A6%E5%A4%96%E4%B8%80%E7%A7%8D%E5%88%86%E7%B1%BB%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">另外一种分类模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%B7%B1%E6%80%BB%E7%BB%93%E7%9A%84%E4%B8%80%E4%BA%9B%EF%BC%8C%E5%AF%B9%E6%AF%94%E4%B8%80%E4%B8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">自己总结的一些，对比一下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A2%B3%E5%8C%96%E7%A1%85%E5%A4%96%E5%BB%B6%E5%B1%82%E7%BC%BA%E9%99%B7"><span class="nav-number">2.</span> <span class="nav-text">碳化硅外延层缺陷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A2%B3%E5%8C%96%E7%A1%85%E4%BD%8D%E9%94%99"><span class="nav-number">2.1.</span> <span class="nav-text">碳化硅位错</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">引用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Riddle Ma</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/02/26/defect-type/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="常见的半导体缺陷类型总结 | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常见的半导体缺陷类型总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-02-26 09:46:27" itemprop="dateCreated datePublished" datetime="2026-02-26T09:46:27+08:00">2026-02-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-02-28 16:55:05" itemprop="dateModified" datetime="2026-02-28T16:55:05+08:00">2026-02-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>开个新贴，记录一下半导体中常见的缺陷类型，使用公开的数据和文献进行整理，不定期更新。</p>
+<p>粒子缺陷，在半导体制造中，指的是在制造过程中产生的微小颗粒或杂质。这些缺陷可能源自原材料的不纯、设备磨损、环境污染或操作失误等多种因素。粒子缺陷对半导体器件的性能和质量有着显著影响，因此，对其进行深入研究和有效控制极为关键。</p>
+<p>这里列出所有的缺陷类别：</p>
+<p><img src="/2026/02/26/defect-type/defect_list1.jpg" alt="defct list1"><br><img src="/2026/02/26/defect-type/defect_list2.jpg" alt="defct list2"></p>
+<table>
+<thead>
+<tr>
+<th align="center">缺陷类型中文</th>
+<th align="center">缺陷类型英文</th>
+<th align="left">图像描述</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">外来物质（颗粒）</td>
+<td align="center">Foreign Material (Particles)</td>
+<td align="left">显示在晶圆表面存在一些不规则的颗粒或杂质</td>
+<td align="left">指在生产过程中，由于环境中的尘埃、设备磨损或其他原因导致的微小颗粒物附着在晶圆上</td>
+</tr>
+<tr>
+<td align="center">大面积区域</td>
+<td align="center">Large Area</td>
+<td align="left">图像显示一个较大的不规则区域，可能是材料缺失或不均匀的区域</td>
+<td align="left">通常指的是晶圆上的大面积缺陷，如蚀刻不完全、沉积层厚度不均等</td>
+</tr>
+<tr>
+<td align="center">线条断裂</td>
+<td align="center">Line Break</td>
+<td align="left">图像显示一条线状结构的中断或缺损</td>
+<td align="left">这种缺陷发生在金属线路或光刻胶线路上，通常是由于工艺过程中的问题导致的断裂</td>
+</tr>
+<tr>
+<td align="center">压印后颗粒掉落</td>
+<td align="center">Post Imprint Fall On Particle</td>
+<td align="left">图像显示在压印后，有颗粒物质掉落在晶圆表面</td>
+<td align="left">这通常发生在压印工艺之后，由于颗粒物的脱落导致表面缺陷</td>
+</tr>
+<tr>
+<td align="center">未填充</td>
+<td align="center">Non-Fill</td>
+<td align="left">图像显示预定填充的区域没有完全填充</td>
+<td align="left">这可能是由于蚀刻或沉积工艺中的问题，导致某些区域未能正确填充</td>
+</tr>
+<tr>
+<td align="center">老鼠咬痕</td>
+<td align="center">Mouse Bite</td>
+<td align="left">图像显示小的缺口或凹槽，类似于被咬的痕迹</td>
+<td align="left">这种缺陷形式，类似于“缺口”或凹槽，可能由机械损伤或化学腐蚀引起</td>
+</tr>
+<tr>
+<td align="center">玻璃损伤</td>
+<td align="center">Glass Damage</td>
+<td align="left">图像显示玻璃基板上有裂纹或破损</td>
+<td align="left">可能是由物理冲击、热应力或加工过程中的不当处理造成的</td>
+</tr>
+<tr>
+<td align="center">Z轴缺陷</td>
+<td align="center">Z Axis Defect</td>
+<td align="left">图像显示垂直于表面的缺陷，例如分层或剥离现象</td>
+<td align="left">这类缺陷与晶圆的垂直方向有关，可能涉及多层结构的完整性问题</td>
+</tr>
+<tr>
+<td align="center">桥接</td>
+<td align="center">Bridge</td>
+<td align="left">图像显示两个相邻的结构之间形成了一个连接桥</td>
+<td align="left">这现象可能是因为过度生长的材料导致原本应该分离的部分相互连接在一起</td>
+</tr>
+</tbody></table>
+<h3 id="另外一种分类模式"><a href="#另外一种分类模式" class="headerlink" title="另外一种分类模式"></a>另外一种分类模式</h3><table>
+<thead>
+<tr>
+<th align="center">缺陷类型中文</th>
+<th align="center">缺陷类型英文</th>
+<th align="left">图像描述</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">开放性缺陷（孤立模式）</td>
+<td align="center">Open Defct</td>
+<td align="left">在孤立模式的区域出现的裂缝或开口。明显的裂缝或开口，通常较大。</td>
+<td align="left">材料断裂、裂纹扩展、物理损伤。</td>
+</tr>
+<tr>
+<td align="center">短缺陷（窄间距模式）</td>
+<td align="center">Short Defect</td>
+<td align="left">在紧密排列的模式上出现的小缺陷。缺陷较小，但由于图案间距紧密，影响可能较大。</td>
+<td align="left">材料不均匀、加工误差。</td>
+</tr>
+<tr>
+<td align="center">嵌入颗粒</td>
+<td align="center">Embedded paticle</td>
+<td align="left">材料内部的异物。颗粒形状和大小各异，通常与基材颜色和质地不同。</td>
+<td align="left">制造过程中的污染、不当混合。</td>
+</tr>
+<tr>
+<td align="center">划痕</td>
+<td align="center">Scratch</td>
+<td align="left">表面的线性损伤。线性特征，可能伴有材料移除或变形。</td>
+<td align="left">刮擦、机械损伤、加工过程中的摩擦。</td>
+</tr>
+</tbody></table>
+<h3 id="自己总结的一些，对比一下"><a href="#自己总结的一些，对比一下" class="headerlink" title="自己总结的一些，对比一下"></a>自己总结的一些，对比一下</h3><ul>
+<li>particle</li>
+<li>residue</li>
+<li>break</li>
+<li>bridge</li>
+<li>loss</li>
+<li>hump</li>
+</ul>
+<h2 id="碳化硅外延层缺陷"><a href="#碳化硅外延层缺陷" class="headerlink" title="碳化硅外延层缺陷"></a>碳化硅外延层缺陷</h2><p>碳化硅（SiC）外延层，是在碳化硅单晶衬底上，通过外延生长技术制备的、与衬底晶格完全匹配的单晶碳化硅薄膜。由于SiC 衬底本身缺陷多、掺杂难控，无法直接用于制造高性能器件，因此通常会增加外延层来提供相对稳定的制备基底。外延层晶格结构与衬底完全一致（如均为 4H‑SiC）、晶体质量远高于衬底、电学参数可精确调控。</p>
+<p>碳化硅外延层的缺陷主要分为两大类：</p>
+<ul>
+<li>晶体缺陷，包括点缺陷、螺位错、微管缺陷、刃位错等，大多来源于SiC衬底的缺陷扩散至外延层。表面形貌缺陷借助显微镜可通过肉眼直接观察，具有典型的形貌特征。</li>
+<li>表面形貌缺陷。主要包括：划痕（Scratch）、三角形缺陷 （Triangular defect）、胡萝卜缺陷（Carrot defect）、掉落物（Downfall）以及颗粒（Particle）等。</li>
+</ul>
+<p><img src="/2026/02/26/defect-type/defect_list3.jpg" alt="defct list3"></p>
+<h3 id="碳化硅位错"><a href="#碳化硅位错" class="headerlink" title="碳化硅位错"></a>碳化硅位错</h3><blockquote>
+<p>整理过程中，在晶体层面也有一些缺陷，在实际工作过程中没有接触到，补充一下。</p>
+</blockquote>
+<p>在碳化硅衬底中，位错是一种缺陷，指晶体中的某种类型的滑移或错位。位错密度可以影响碳化硅衬底的物理和电学性质。</p>
+<ul>
+<li>TSD（Thread-Slip Dislocation）是指一种位错类型，即晶体中的一种缺陷。这种位错类型是在晶体生长过程中，由于温度降低，硅原子在生长界面上不能按一定规律排列，导致晶体内部出现线状的位错。这种位错类型会影响碳化硅衬底的物理和电学性质。</li>
+<li>BPD（Basal Plane Dislocation）也是碳化硅衬底中的一种位错类型，它是绕着碳化硅晶体的基平面（0001）方向滑移产生的。这种位错类型在碳化硅晶体生长过程中产生，并沿着基平面方向延伸。</li>
+<li>TED（Etch Pileup Dislocation）是一种在碳化硅衬底表面形成的位错类型，它会在碳化硅衬底的某些区域形成突起或“堆”，从而影响衬底的平整度和表面质量。这种位错类型通常是由于碳化硅衬底表面受到腐蚀或氧化作用而产生的。</li>
+<li>EPD（Etch Pit Dislocation）是一种在碳化硅衬底表面形成的位错类型，它会在碳化硅衬底的某些区域形成凹陷或“坑”，从而影响衬底的平整度和表面质量。这种位错类型通常是由于碳化硅衬底表面受到腐蚀或氧化作用而产生的。</li>
+</ul>
+<p><img src="/2026/02/26/defect-type/defect_list4.jpg" alt="defct list4"></p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://news.qq.com/rain/a/20250221A07I7E00">半导体制造领域中的粒子缺陷（Particle Defect）</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/710649967">半导体碳化硅（Sic）外延片“小坑缺陷”研究的详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/pin/1698625452749508608">碳化硅位错密度技术指标</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%8A%E5%AF%BC%E4%BD%93/" rel="tag"># 半导体</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/02/13/SAM-Arts/" rel="prev" title="SAM-Arts">
+                  <i class="fa fa-angle-left"></i> SAM-Arts
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/02/28/semi-company/" rel="next" title="半导体公司整理">
+                  半导体公司整理 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Riddle Ma</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
