@@ -10,8 +10,8 @@ tags: 半导体
 
 这里列出所有的缺陷类别：
 
-![defct list1](defect-type/defect_list1.jpg)
-![defct list2](defect-type/defect_list2.jpg)
+![defct list1](/defect-type/defect_list1.jpg)
+![defct list2](/defect-type/defect_list2.jpg)
 
 | 缺陷类型中文 | 缺陷类型英文 | 图像描述 | 解释 |
 |:------:|:------:|:------|:------|
@@ -49,7 +49,7 @@ tags: 半导体
 - 晶体缺陷，包括点缺陷、螺位错、微管缺陷、刃位错等，大多来源于SiC衬底的缺陷扩散至外延层。表面形貌缺陷借助显微镜可通过肉眼直接观察，具有典型的形貌特征。
 - 表面形貌缺陷。主要包括：划痕（Scratch）、三角形缺陷 （Triangular defect）、胡萝卜缺陷（Carrot defect）、掉落物（Downfall）以及颗粒（Particle）等。
 
-![defct list3](defect-type/defect_list3.jpg)
+![defct list3](/defect-type/defect_list3.jpg)
 
 ### 碳化硅位错
 > 整理过程中，在晶体层面也有一些缺陷，在实际工作过程中没有接触到，补充一下。
@@ -61,7 +61,7 @@ tags: 半导体
 - TED（Etch Pileup Dislocation）是一种在碳化硅衬底表面形成的位错类型，它会在碳化硅衬底的某些区域形成突起或“堆”，从而影响衬底的平整度和表面质量。这种位错类型通常是由于碳化硅衬底表面受到腐蚀或氧化作用而产生的。
 - EPD（Etch Pit Dislocation）是一种在碳化硅衬底表面形成的位错类型，它会在碳化硅衬底的某些区域形成凹陷或“坑”，从而影响衬底的平整度和表面质量。这种位错类型通常是由于碳化硅衬底表面受到腐蚀或氧化作用而产生的。
 
-![defct list4](defect-type/defect_list4.jpg)
+![defct list4](/defect-type/defect_list4.jpg)
 
 ## 引用
 1. [半导体制造领域中的粒子缺陷（Particle Defect）](https://news.qq.com/rain/a/20250221A07I7E00)
