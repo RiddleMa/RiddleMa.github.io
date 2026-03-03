@@ -19,26 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"riddlema.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="简介频域滤波主要是利用傅里叶变换，对图像的高频或低频信息进行增强或者削弱，实现无法在空域中达到的图像处理效果。 实际使用这一方法的过程中，发现了一些问题，记录一下。 频域滤波的一般步骤 获取原图像 填充零，填充到尺寸为2的整数倍 二维傅利叶变换 频域中心化，把四角的低频移动到图像中心 构造频域滤波器掩膜，低通、高通、带通、高斯、巴特沃斯 把频域图与掩膜相乘，逐点相乘 反中心化 逆傅利叶变换   简">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://riddlema.github.io/2025/10/16/hello-world/index.html">
+<meta property="og:title" content="频域滤波使用的注意事项">
+<meta property="og:url" content="https://riddlema.github.io/2026/03/03/frequency-domain-filtering/index.html">
 <meta property="og:site_name" content="Riddle的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="简介频域滤波主要是利用傅里叶变换，对图像的高频或低频信息进行增强或者削弱，实现无法在空域中达到的图像处理效果。 实际使用这一方法的过程中，发现了一些问题，记录一下。 频域滤波的一般步骤 获取原图像 填充零，填充到尺寸为2的整数倍 二维傅利叶变换 频域中心化，把四角的低频移动到图像中心 构造频域滤波器掩膜，低通、高通、带通、高斯、巴特沃斯 把频域图与掩膜相乘，逐点相乘 反中心化 逆傅利叶变换   简">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-16T09:47:59.772Z">
-<meta property="article:modified_time" content="2025-10-16T09:46:27.186Z">
+<meta property="og:image" content="https://riddlema.github.io/2026/03/03/frequency-domain-filtering/mask.png">
+<meta property="og:image" content="https://riddlema.github.io/2026/03/03/frequency-domain-filtering/mask2.png">
+<meta property="article:published_time" content="2026-03-03T01:42:40.000Z">
+<meta property="article:modified_time" content="2026-03-03T07:05:38.278Z">
 <meta property="article:author" content="Riddle Ma">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://riddlema.github.io/2026/03/03/frequency-domain-filtering/mask.png">
 
 
-<link rel="canonical" href="https://riddlema.github.io/2025/10/16/hello-world/">
+<link rel="canonical" href="https://riddlema.github.io/2026/03/03/frequency-domain-filtering/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://riddlema.github.io/2025/10/16/hello-world/","path":"2025/10/16/hello-world/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://riddlema.github.io/2026/03/03/frequency-domain-filtering/","path":"2026/03/03/frequency-domain-filtering/","title":"频域滤波使用的注意事项"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | Riddle的博客</title>
+<title>频域滤波使用的注意事项 | Riddle的博客</title>
   
 
 
@@ -120,7 +123,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%91%E5%9F%9F%E6%BB%A4%E6%B3%A2%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">频域滤波的一般步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%80%BC%E5%9F%9F%E5%8F%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">问题一：图像值域变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E6%8E%A9%E8%86%9C%E5%B7%AE%E5%BC%82"><span class="nav-number">4.</span> <span class="nav-text">问题二：掩膜差异</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -165,7 +168,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2025/10/16/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/03/03/frequency-domain-filtering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,12 +181,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | Riddle的博客">
+      <meta itemprop="name" content="频域滤波使用的注意事项 | Riddle的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          频域滤波使用的注意事项
         </h1>
 
         <div class="post-meta-container">
@@ -195,7 +198,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-10-16 17:47:59 / 修改时间：17:46:27" itemprop="dateCreated datePublished" datetime="2025-10-16T17:47:59+08:00">2025-10-16</time>
+      <time title="创建时间：2026-03-03 09:42:40 / 修改时间：15:05:38" itemprop="dateCreated datePublished" datetime="2026-03-03T09:42:40+08:00">2026-03-03</time>
     </span>
 
   
@@ -207,19 +210,40 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>频域滤波主要是利用傅里叶变换，对图像的高频或低频信息进行增强或者削弱，实现无法在空域中达到的图像处理效果。</p>
+<p>实际使用这一方法的过程中，发现了一些问题，记录一下。</p>
+<h2 id="频域滤波的一般步骤"><a href="#频域滤波的一般步骤" class="headerlink" title="频域滤波的一般步骤"></a>频域滤波的一般步骤</h2><ol>
+<li>获取原图像</li>
+<li>填充零，填充到尺寸为2的整数倍</li>
+<li>二维傅利叶变换</li>
+<li>频域中心化，把四角的低频移动到图像中心</li>
+<li>构造频域滤波器掩膜，低通、高通、带通、高斯、巴特沃斯</li>
+<li>把频域图与掩膜相乘，逐点相乘</li>
+<li>反中心化</li>
+<li>逆傅利叶变换</li>
+</ol>
+<ul>
+<li>简化方法<br>可以简化频域中心化方法，在傅里叶变换前对图像乘以(-1)^(x+y),实现和频域中心化同样的方法。</li>
+</ul>
+<h2 id="问题一：图像值域变化"><a href="#问题一：图像值域变化" class="headerlink" title="问题一：图像值域变化"></a>问题一：图像值域变化</h2><p>使用频域滤波是将图像的一部分信号消除或者削弱，所以最终的图像灰度值会比原图要小。<br>在c++中，逆傅利叶变换时如果不添加参数<code>cv::DFT_SCALE</code>，得到的图像数值会是真实值的<br>M×N倍,否则结果会严重失真。</p>
+<ul>
+<li>python<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ifft_img = np.fft.ifft2(fft_ishift)  <span class="comment"># 2D-逆FFT，得到复数矩阵</span></span><br><span class="line">img_real = np.real(ifft_img)  <span class="comment"># 取实部</span></span><br></pre></td></tr></table></figure></li>
+<li>C++<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dft</span>(fft_ishift, ifft_img, DFT_INVERSE | cv::DFT_SCALE | cv::DFT_REAL_OUTPUT);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="问题二：掩膜差异"><a href="#问题二：掩膜差异" class="headerlink" title="问题二：掩膜差异"></a>问题二：掩膜差异</h2><p>掩膜的生成方式也可能有错误。<br>以圆形掩膜为例，在图像长宽都为偶数的情况下，以<strong>图像绝对中心</strong>作为圆心，绘制圆形掩膜。</p>
+<div align="center">
+  <img src="/2026/03/03/frequency-domain-filtering/mask.png" width="150" alt="图1 ImageJ标准mask">
+  <p>图1 ImageJ标准mask</p>
+</div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>一个错误的做法是，使用<strong>图像中心的像素</strong>作为圆心，这种做法在图像长宽为奇数时没问题。但是傅利叶变换一般都把图像padding为偶数，所以这种做法会和Imagej结果有轻微的不同。</p>
+<div align="center">
+  <img src="/2026/03/03/frequency-domain-filtering/mask2.png" width="150" alt="图1 ImageJ标准mask">
+  <p>图2 通常的错误做法mask</p>
+</div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
     </div>
 
@@ -233,11 +257,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2026/02/28/semi-company/" rel="prev" title="半导体公司整理">
+                  <i class="fa fa-angle-left"></i> 半导体公司整理
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/10/17/hexo-use/" rel="next" title="hexo使用记录">
-                  hexo使用记录 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

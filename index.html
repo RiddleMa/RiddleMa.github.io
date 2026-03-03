@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -150,6 +150,109 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/03/03/frequency-domain-filtering/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/03/frequency-domain-filtering/" class="post-title-link" itemprop="url">频域滤波使用的注意事项</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-03 09:42:40 / 修改时间：15:05:38" itemprop="dateCreated datePublished" datetime="2026-03-03T09:42:40+08:00">2026-03-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>频域滤波主要是利用傅里叶变换，对图像的高频或低频信息进行增强或者削弱，实现无法在空域中达到的图像处理效果。</p>
+<p>实际使用这一方法的过程中，发现了一些问题，记录一下。</p>
+<h2 id="频域滤波的一般步骤"><a href="#频域滤波的一般步骤" class="headerlink" title="频域滤波的一般步骤"></a>频域滤波的一般步骤</h2><ol>
+<li>获取原图像</li>
+<li>填充零，填充到尺寸为2的整数倍</li>
+<li>二维傅利叶变换</li>
+<li>频域中心化，把四角的低频移动到图像中心</li>
+<li>构造频域滤波器掩膜，低通、高通、带通、高斯、巴特沃斯</li>
+<li>把频域图与掩膜相乘，逐点相乘</li>
+<li>反中心化</li>
+<li>逆傅利叶变换</li>
+</ol>
+<ul>
+<li>简化方法<br>可以简化频域中心化方法，在傅里叶变换前对图像乘以(-1)^(x+y),实现和频域中心化同样的方法。</li>
+</ul>
+<h2 id="问题一：图像值域变化"><a href="#问题一：图像值域变化" class="headerlink" title="问题一：图像值域变化"></a>问题一：图像值域变化</h2><p>使用频域滤波是将图像的一部分信号消除或者削弱，所以最终的图像灰度值会比原图要小。<br>在c++中，逆傅利叶变换时如果不添加参数<code>cv::DFT_SCALE</code>，得到的图像数值会是真实值的<br>M×N倍,否则结果会严重失真。</p>
+<ul>
+<li>python<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ifft_img = np.fft.ifft2(fft_ishift)  <span class="comment"># 2D-逆FFT，得到复数矩阵</span></span><br><span class="line">img_real = np.real(ifft_img)  <span class="comment"># 取实部</span></span><br></pre></td></tr></table></figure></li>
+<li>C++<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dft</span>(fft_ishift, ifft_img, DFT_INVERSE | cv::DFT_SCALE | cv::DFT_REAL_OUTPUT);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="问题二：掩膜差异"><a href="#问题二：掩膜差异" class="headerlink" title="问题二：掩膜差异"></a>问题二：掩膜差异</h2><p>掩膜的生成方式也可能有错误。<br>以圆形掩膜为例，在图像长宽都为偶数的情况下，以<strong>图像绝对中心</strong>作为圆心，绘制圆形掩膜。</p>
+<div align="center">
+  <img src="/2026/03/03/frequency-domain-filtering/mask.png" width="150" alt="图1 ImageJ标准mask">
+  <p>图1 ImageJ标准mask</p>
+</div>
+
+<p>一个错误的做法是，使用<strong>图像中心的像素</strong>作为圆心，这种做法在图像长宽为奇数时没问题。但是傅利叶变换一般都把图像padding为偶数，所以这种做法会和Imagej结果有轻微的不同。</p>
+<div align="center">
+  <img src="/2026/03/03/frequency-domain-filtering/mask2.png" width="150" alt="图1 ImageJ标准mask">
+  <p>图2 通常的错误做法mask</p>
+</div>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1697,138 +1800,6 @@
 </ul>
 <p><a id="article-3"></a></p>
 <h3 id="Multi-Kernel-Estimation-based-Object-Segmentation"><a href="#Multi-Kernel-Estimation-based-Object-Segmentation" class="headerlink" title="Multi Kernel Estimation based Object Segmentation"></a>Multi Kernel Estimation based Object Segmentation</h3>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2025/11/13/yolo-use1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Riddle Ma">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Riddle的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Riddle的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/13/yolo-use1/" class="post-title-link" itemprop="url">YOLO使用记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-11-13 17:59:26" itemprop="dateCreated datePublished" datetime="2025-11-13T17:59:26+08:00">2025-11-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-01-23 18:29:53" itemprop="dateModified" datetime="2026-01-23T18:29:53+08:00">2026-01-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="YOLO使用记录"><a href="#YOLO使用记录" class="headerlink" title="YOLO使用记录"></a>YOLO使用记录</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
-<p>YOLO太强大了，感觉根本不需要额外添加什么代码，就能完成基础的训练<br>代价是：必须弄懂参数和返回值</p>
-</blockquote>
-<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>找到了公开的半导体缺陷检测数据集，是光学显微镜拍摄的，图像的标注质量很高。<br>这个网站提供的数据集很多，记录：<a target="_blank" rel="noopener" href="https://universe.roboflow.com/wafer-irhuv/wafer-defect-rv1vx/">wafer defect</a><br>支持下载的格式很多，直接使用YOLOv11格式</p>
-<h2 id="数据集格式"><a href="#数据集格式" class="headerlink" title="数据集格式"></a>数据集格式</h2><blockquote>
-<p>YOLO对格式和config等文件要求很严格，所以要使用规定的格式。<br>如果是自有数据集，需要按照格式进行转换。</p>
-</blockquote>
-<ul>
-<li>文件目录：</li>
-<li>train</li>
-<li>test</li>
-<li>valid</li>
-<li>data.yaml</li>
-</ul>
-<p>其中，train, test, valid文件夹内目录：</p>
-<ul>
-<li>images<ul>
-<li>image1.jpg</li>
-<li>image2.jpg</li>
-<li>……</li>
-</ul>
-</li>
-<li>labels<ul>
-<li>image1.txt</li>
-<li>image2.txt</li>
-<li>……</li>
-</ul>
-</li>
-</ul>
-<p>data.yaml的格式示例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">train: ../train/images  # 指示训练集的路径</span><br><span class="line">val: ../valid/images</span><br><span class="line">test: ../test/images</span><br><span class="line"></span><br><span class="line">nc: 7   # 类别数</span><br><span class="line">names: [&#x27;BLOCK ETCH&#x27;, &#x27;COATING BAD&#x27;, &#x27;PARTICLE&#x27;, &#x27;PIQ PARTICLE&#x27;, &#x27;PO CONTAMINATION&#x27;, &#x27;SCRATCH&#x27;, &#x27;SEZ BURNT&#x27;]    # 类别名</span><br><span class="line"># 中文名称：块状蚀刻、涂层不良、颗粒、PIQ颗粒、PO污染、划痕、SEZ机台过烧（暂不清楚）</span><br><span class="line"></span><br><span class="line">roboflow:   # 网站添加的附加信息</span><br><span class="line">  workspace: wafer-irhuv</span><br><span class="line">  project: wafer-defect-rv1vx</span><br><span class="line">  version: 2</span><br><span class="line">  license: CC BY 4.0</span><br><span class="line">  url: https://universe.roboflow.com/wafer-irhuv/wafer-defect-rv1vx/dataset/2</span><br></pre></td></tr></table></figure>
-<h3 id="label格式"><a href="#label格式" class="headerlink" title="label格式"></a>label格式</h3><p>示例如下，每个标注为一行，<br>第一个数字表示<code>标签类别</code>，后面的小数为归一化后的<code>数据坐标</code>,每个坐标有两个数值，顺序是<code>x1,y1,x2,y2....</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 0.6975 0.3889583333333333 0.6810937499999999 0.3577083333333333 0.579375 0.31375 0.5634375 0.301875 0.516875 0.2779166666666667 0.4840625 0.2558333333333333 0.44749999999999995 0.23645833333333333 0.35890625 0.20770833333333333 0.28500000000000003 </span><br><span class="line">0.19104166666666667 0.19125 0.17854166666666668 0.13093749999999998 0.17583333333333334 0.1159375 0.18104166666666668 0.09828125 0.19749999999999998 0.08796875 0.21416666666666667 0.0840625 0.23208333333333334 0.08203125 0.28 0.08937500000000001 </span><br><span class="line">0.33208333333333334 0.11499999999999999 0.41791666666666666 0.15984375 0.5304166666666666 0.17890625 0.55875 0.19437500000000002 0.5697916666666667 0.21421874999999999 0.574375 0.275 0.5702083333333333 0.40578125 0.5685416666666666 0.49328125 0.574375</span><br><span class="line"> 0.649375 0.574375 0.688125 0.5664583333333333 0.7006249999999999 0.5608333333333333 0.71703125 0.5477083333333332 0.725625......</span><br></pre></td></tr></table></figure>
-
-<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>训练就一行代码，但是方法里面可以添加很多参数，这个要参考官网文档<a target="_blank" rel="noopener" href="https://docs.ultralytics.com/zh/modes/train/">使用 Ultralytics YOLO 进行模型训练</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"><span class="comment"># model = YOLO(&quot;yolo11n-seg.pt&quot;)</span></span><br><span class="line"><span class="comment"># results = model.train(data=&quot;/data/mazerui/images/Wafer Defect.v2-final.yolov11/data.yaml&quot;, epochs=300, imgsz=512,batch=8,device=[0,1,2,3])    # visualize=True</span></span><br></pre></td></tr></table></figure>
-<p>简单写下现在用到的参数：</p>
-<ul>
-<li>epoch: 轮数</li>
-<li>imgsz: 图像缩放到的大小，长宽都为这个</li>
-<li>batch: batch size</li>
-<li>device: 指定GPU</li>
-<li>visualize: 可以使用tensorboard进行实时监控</li>
-</ul>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><pre><code>             Class     Images  Instances      Box(P          R      mAP50  m
-               all        907        909      0.741      0.727      0.749      0.518       0.69      0.647      0.658      0.364
-        BLOCK ETCH        181        181      0.821      0.713      0.817       0.62      0.826      0.707        0.8      0.576
-       COATING BAD         69         69      0.571      0.599      0.517      0.387      0.509      0.482      0.411      0.222
-          PARTICLE        119        119      0.774      0.866      0.826      0.543        0.8      0.843      0.848      0.524
-      PIQ PARTICLE         86         86      0.733      0.826      0.782       0.47      0.738      0.779      0.751      0.377
-  PO CONTAMINATION        110        111      0.684      0.586      0.686      0.483      0.522      0.396      0.417      0.205
-           SCRATCH        322        323      0.832      0.831      0.898       0.68       0.79      0.771      0.784       0.34
-         SEZ BURNT         20         20      0.771      0.673      0.718      0.445      0.643       0.55      0.598      0.307
-</code></pre>
-<blockquote>
-<p>yolo11n的结果，结果也还行吧，后面补一下测试集</p>
-</blockquote>
-
       
     </div>
 
