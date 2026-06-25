@@ -71,7 +71,10 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Riddle的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -141,8 +144,9 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
+          <a href="/tags/">
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -227,8 +231,8 @@
 </ul>
 <h2 id="问题一：图像值域变化"><a href="#问题一：图像值域变化" class="headerlink" title="问题一：图像值域变化"></a>问题一：图像值域变化</h2><p>使用频域滤波是将图像的一部分信号消除或者削弱，所以最终的图像灰度值会比原图要小。<br>在c++中，逆傅利叶变换时如果不添加参数<code>cv::DFT_SCALE</code>，得到的图像数值会是真实值的<br>M×N倍,否则结果会严重失真。</p>
 <ul>
-<li>python<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ifft_img = np.fft.ifft2(fft_ishift)  <span class="comment"># 2D-逆FFT，得到复数矩阵</span></span><br><span class="line">img_real = np.real(ifft_img)  <span class="comment"># 取实部</span></span><br></pre></td></tr></table></figure></li>
-<li>C++<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dft</span>(fft_ishift, ifft_img, DFT_INVERSE | cv::DFT_SCALE | cv::DFT_REAL_OUTPUT);</span><br></pre></td></tr></table></figure></li>
+<li>python<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ifft_img = np.fft.ifft2(fft_ishift)  <span class="comment"># 2D-逆FFT，得到复数矩阵</span></span><br><span class="line">img_real = np.real(ifft_img)  <span class="comment"># 取实部</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>C++<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dft</span>(fft_ishift, ifft_img, DFT_INVERSE | cv::DFT_SCALE | cv::DFT_REAL_OUTPUT);</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 <h2 id="问题二：掩膜差异"><a href="#问题二：掩膜差异" class="headerlink" title="问题二：掩膜差异"></a>问题二：掩膜差异</h2><p>掩膜的生成方式也可能有错误。<br>以圆形掩膜为例，在图像长宽都为偶数的情况下，以<strong>图像绝对中心</strong>作为圆心，绘制圆形掩膜。</p>
 <div align="center">

@@ -68,7 +68,10 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Riddle的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -138,8 +141,9 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
+          <a href="/tags/">
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -243,12 +247,12 @@
 </li>
 </ul>
 <p>data.yaml的格式示例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">train: ../train/images  # 指示训练集的路径</span><br><span class="line">val: ../valid/images</span><br><span class="line">test: ../test/images</span><br><span class="line"></span><br><span class="line">nc: 7   # 类别数</span><br><span class="line">names: [&#x27;BLOCK ETCH&#x27;, &#x27;COATING BAD&#x27;, &#x27;PARTICLE&#x27;, &#x27;PIQ PARTICLE&#x27;, &#x27;PO CONTAMINATION&#x27;, &#x27;SCRATCH&#x27;, &#x27;SEZ BURNT&#x27;]    # 类别名</span><br><span class="line"># 中文名称：块状蚀刻、涂层不良、颗粒、PIQ颗粒、PO污染、划痕、SEZ机台过烧（暂不清楚）</span><br><span class="line"></span><br><span class="line">roboflow:   # 网站添加的附加信息</span><br><span class="line">  workspace: wafer-irhuv</span><br><span class="line">  project: wafer-defect-rv1vx</span><br><span class="line">  version: 2</span><br><span class="line">  license: CC BY 4.0</span><br><span class="line">  url: https://universe.roboflow.com/wafer-irhuv/wafer-defect-rv1vx/dataset/2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">train: ../train/images  # 指示训练集的路径</span><br><span class="line">val: ../valid/images</span><br><span class="line">test: ../test/images</span><br><span class="line"></span><br><span class="line">nc: 7   # 类别数</span><br><span class="line">names: ['BLOCK ETCH', 'COATING BAD', 'PARTICLE', 'PIQ PARTICLE', 'PO CONTAMINATION', 'SCRATCH', 'SEZ BURNT']    # 类别名</span><br><span class="line"># 中文名称：块状蚀刻、涂层不良、颗粒、PIQ颗粒、PO污染、划痕、SEZ机台过烧（暂不清楚）</span><br><span class="line"></span><br><span class="line">roboflow:   # 网站添加的附加信息</span><br><span class="line">  workspace: wafer-irhuv</span><br><span class="line">  project: wafer-defect-rv1vx</span><br><span class="line">  version: 2</span><br><span class="line">  license: CC BY 4.0</span><br><span class="line">  url: https://universe.roboflow.com/wafer-irhuv/wafer-defect-rv1vx/dataset/2</span><br></pre></td></tr></tbody></table></figure>
 <h3 id="label格式"><a href="#label格式" class="headerlink" title="label格式"></a>label格式</h3><p>示例如下，每个标注为一行，<br>第一个数字表示<code>标签类别</code>，后面的小数为归一化后的<code>数据坐标</code>,每个坐标有两个数值，顺序是<code>x1,y1,x2,y2....</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 0.6975 0.3889583333333333 0.6810937499999999 0.3577083333333333 0.579375 0.31375 0.5634375 0.301875 0.516875 0.2779166666666667 0.4840625 0.2558333333333333 0.44749999999999995 0.23645833333333333 0.35890625 0.20770833333333333 0.28500000000000003 </span><br><span class="line">0.19104166666666667 0.19125 0.17854166666666668 0.13093749999999998 0.17583333333333334 0.1159375 0.18104166666666668 0.09828125 0.19749999999999998 0.08796875 0.21416666666666667 0.0840625 0.23208333333333334 0.08203125 0.28 0.08937500000000001 </span><br><span class="line">0.33208333333333334 0.11499999999999999 0.41791666666666666 0.15984375 0.5304166666666666 0.17890625 0.55875 0.19437500000000002 0.5697916666666667 0.21421874999999999 0.574375 0.275 0.5702083333333333 0.40578125 0.5685416666666666 0.49328125 0.574375</span><br><span class="line"> 0.649375 0.574375 0.688125 0.5664583333333333 0.7006249999999999 0.5608333333333333 0.71703125 0.5477083333333332 0.725625......</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 0.6975 0.3889583333333333 0.6810937499999999 0.3577083333333333 0.579375 0.31375 0.5634375 0.301875 0.516875 0.2779166666666667 0.4840625 0.2558333333333333 0.44749999999999995 0.23645833333333333 0.35890625 0.20770833333333333 0.28500000000000003 </span><br><span class="line">0.19104166666666667 0.19125 0.17854166666666668 0.13093749999999998 0.17583333333333334 0.1159375 0.18104166666666668 0.09828125 0.19749999999999998 0.08796875 0.21416666666666667 0.0840625 0.23208333333333334 0.08203125 0.28 0.08937500000000001 </span><br><span class="line">0.33208333333333334 0.11499999999999999 0.41791666666666666 0.15984375 0.5304166666666666 0.17890625 0.55875 0.19437500000000002 0.5697916666666667 0.21421874999999999 0.574375 0.275 0.5702083333333333 0.40578125 0.5685416666666666 0.49328125 0.574375</span><br><span class="line"> 0.649375 0.574375 0.688125 0.5664583333333333 0.7006249999999999 0.5608333333333333 0.71703125 0.5477083333333332 0.725625......</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>训练就一行代码，但是方法里面可以添加很多参数，这个要参考官网文档<a target="_blank" rel="noopener" href="https://docs.ultralytics.com/zh/modes/train/">使用 Ultralytics YOLO 进行模型训练</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"><span class="comment"># model = YOLO(&quot;yolo11n-seg.pt&quot;)</span></span><br><span class="line"><span class="comment"># results = model.train(data=&quot;/data/mazerui/images/Wafer Defect.v2-final.yolov11/data.yaml&quot;, epochs=300, imgsz=512,batch=8,device=[0,1,2,3])    # visualize=True</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"><span class="comment"># model = YOLO("yolo11n-seg.pt")</span></span><br><span class="line"><span class="comment"># results = model.train(data="/data/mazerui/images/Wafer Defect.v2-final.yolov11/data.yaml", epochs=300, imgsz=512,batch=8,device=[0,1,2,3])    # visualize=True</span></span><br></pre></td></tr></tbody></table></figure>
 <p>简单写下现在用到的参数：</p>
 <ul>
 <li>epoch: 轮数</li>
@@ -283,7 +287,7 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/11/13/Wax-moth/" rel="prev" title="神器的蜡虫">
+                <a href="/2025/11/13/wax-moth/" rel="prev" title="神器的蜡虫">
                   <i class="fa fa-angle-left"></i> 神器的蜡虫
                 </a>
             </div>
