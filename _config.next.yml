@@ -29,8 +29,8 @@ custom_file_path:
   #bodyEnd: source/_data/body-end.njk
   #variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
-  #style: source/_data/styles.styl
-  style: source/css/_custom.styl
+  style: source/_data/styles.styl
+
 
 # ---------------------------------------------------------------
 # Scheme Settings
@@ -159,6 +159,7 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
+  LoveTree: https://riddlema.github.io/LoveTree/ || fas fa-heartbeat
   #GitHub: https://github.com/yourname || fab fa-github
   #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
   #Weibo: https://weibo.com/yourname || fab fa-weibo

@@ -38,18 +38,20 @@ dft(fft_ishift, ifft_img, DFT_INVERSE | cv::DFT_SCALE | cv::DFT_REAL_OUTPUT);
 ## 问题二：掩膜差异
 掩膜的生成方式也可能有错误。
 以圆形掩膜为例，在图像长宽都为偶数的情况下，以**图像绝对中心**作为圆心，绘制圆形掩膜。
-
+```
 <div align="center">
   <img src="mask.png" width="150" alt="图1 ImageJ标准mask">
   <p>图1 ImageJ标准mask</p>
 </div>
-
+```
+![图1 ImageJ标准mask](mask.png)
 一个错误的做法是，使用**图像中心的像素**作为圆心，这种做法在图像长宽为奇数时没问题。但是傅利叶变换一般都把图像padding为偶数，所以这种做法会和Imagej结果有轻微的不同。
-
+```
 <div align="center">
   <img src="mask2.png" width="150" alt="图1 ImageJ标准mask">
   <p>图2 通常的错误做法mask</p>
 </div>
-
+```
+![图2 通常的错误做法mask](mask2.png)
 
 
