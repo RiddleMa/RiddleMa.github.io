@@ -30,7 +30,7 @@ hexo d -g  //部署，这个是推送到master分支
 ```
 - 下面是推送备份到服务器
 ```
-git add source
+git add .
 git commit -m "xxx"
 git push origin hexo  //备份到hexo分支
 ```
