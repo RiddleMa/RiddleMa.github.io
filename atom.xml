@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Riddle Ma</rights>
   <subtitle>技术随笔 | 生活记录</subtitle>
   <title>Riddle的博客</title>
-  <updated>2026-03-03T07:05:38.278Z</updated>
+  <updated>2026-06-26T07:58:14.524Z</updated>
   <entry>
     <author>
       <name>Riddle Ma</name>
@@ -22,7 +22,7 @@
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
     </summary>
     <title>频域滤波使用的注意事项</title>
-    <updated>2026-03-03T07:05:38.278Z</updated>
+    <updated>2026-06-26T07:58:14.524Z</updated>
   </entry>
   <entry>
     <author>
@@ -50,14 +50,14 @@
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
     </summary>
     <title>常见的半导体缺陷类型总结</title>
-    <updated>2026-02-28T08:58:24.662Z</updated>
+    <updated>2026-06-26T07:52:19.277Z</updated>
   </entry>
   <entry>
     <author>
       <name>Riddle Ma</name>
     </author>
-    <id>https://riddlema.github.io/2026/02/13/sam-arts/</id>
-    <link href="https://riddlema.github.io/2026/02/13/sam-arts/"/>
+    <id>https://riddlema.github.io/2026/02/13/SAM-Arts/</id>
+    <link href="https://riddlema.github.io/2026/02/13/SAM-Arts/"/>
     <published>2026-02-13T03:25:31.000Z</published>
     <summary>
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
@@ -69,8 +69,8 @@
     <author>
       <name>Riddle Ma</name>
     </author>
-    <id>https://riddlema.github.io/2026/02/12/incrementallearning/</id>
-    <link href="https://riddlema.github.io/2026/02/12/incrementallearning/"/>
+    <id>https://riddlema.github.io/2026/02/12/IncrementalLearning/</id>
+    <link href="https://riddlema.github.io/2026/02/12/IncrementalLearning/"/>
     <published>2026-02-12T07:09:28.000Z</published>
     <summary>
       <![CDATA[<h2 id="背景"><a href="#背景" class="headerlink"]]>
@@ -82,8 +82,8 @@
     <author>
       <name>Riddle Ma</name>
     </author>
-    <id>https://riddlema.github.io/2026/02/12/msrfm/</id>
-    <link href="https://riddlema.github.io/2026/02/12/msrfm/"/>
+    <id>https://riddlema.github.io/2026/02/12/MSRFM/</id>
+    <link href="https://riddlema.github.io/2026/02/12/MSRFM/"/>
     <published>2026-02-12T07:09:09.000Z</published>
     <summary>
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>论文地址：<a]]>
@@ -95,21 +95,21 @@
     <author>
       <name>Riddle Ma</name>
     </author>
-    <id>https://riddlema.github.io/2026/02/12/memae/</id>
-    <link href="https://riddlema.github.io/2026/02/12/memae/"/>
+    <id>https://riddlema.github.io/2026/02/12/MemAE/</id>
+    <link href="https://riddlema.github.io/2026/02/12/MemAE/"/>
     <published>2026-02-12T07:08:53.000Z</published>
     <summary>
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
     </summary>
     <title>MemAE代码复现及自有数据集测试</title>
-    <updated>2026-02-12T07:11:27.709Z</updated>
+    <updated>2026-06-26T07:54:27.447Z</updated>
   </entry>
   <entry>
     <author>
       <name>Riddle Ma</name>
     </author>
-    <id>https://riddlema.github.io/2026/02/12/sam-use/</id>
-    <link href="https://riddlema.github.io/2026/02/12/sam-use/"/>
+    <id>https://riddlema.github.io/2026/02/12/SAM-use/</id>
+    <link href="https://riddlema.github.io/2026/02/12/SAM-use/"/>
     <published>2026-02-12T06:57:45.000Z</published>
     <summary>
       <![CDATA[<blockquote>
@@ -147,7 +147,7 @@
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
     </summary>
     <title>Sam+YOLO文献调研</title>
-    <updated>2026-01-23T10:29:05.474Z</updated>
+    <updated>2026-06-26T07:51:23.968Z</updated>
   </entry>
   <entry>
     <author>
@@ -167,8 +167,8 @@
       <name>Riddle Ma</name>
     </author>
     <category term="环保" scheme="https://riddlema.github.io/tags/%E7%8E%AF%E4%BF%9D/"/>
-    <id>https://riddlema.github.io/2025/11/13/wax-moth/</id>
-    <link href="https://riddlema.github.io/2025/11/13/wax-moth/"/>
+    <id>https://riddlema.github.io/2025/11/13/Wax-moth/</id>
+    <link href="https://riddlema.github.io/2025/11/13/Wax-moth/"/>
     <published>2025-11-13T09:19:29.000Z</published>
     <summary>
       <![CDATA[<h2 id="简述"><a href="#简述" class="headerlink"]]>

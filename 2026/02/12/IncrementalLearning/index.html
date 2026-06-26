@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
@@ -17,12 +18,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"riddlema.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"night"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"riddlema.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"night"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="背景 SAM是一种基于预训练的图像大模型，使用该模型能够对图像相关的任务进行迁移使用。针对特殊领域的图像分割任务，SamAdapte被发明出来用来对专用数据的分割任务进行加强。 在这个模型的应用过程中，频繁出现新的数据，这些数据的特征与训练数据的特征不尽相同。导致在第一批数据上训练的模型参数，在后面批次数据上的表现性能不佳。需要找到一种方法，能够同时对新旧数据具有良好的表现。 针对这个问题，最简单">
 <meta property="og:type" content="article">
 <meta property="og:title" content="增量学习的方法总结">
-<meta property="og:url" content="https://riddlema.github.io/2026/02/12/incrementallearning/index.html">
+<meta property="og:url" content="https://riddlema.github.io/2026/02/12/IncrementalLearning/index.html">
 <meta property="og:site_name" content="Riddle的博客">
 <meta property="og:description" content="背景 SAM是一种基于预训练的图像大模型，使用该模型能够对图像相关的任务进行迁移使用。针对特殊领域的图像分割任务，SamAdapte被发明出来用来对专用数据的分割任务进行加强。 在这个模型的应用过程中，频繁出现新的数据，这些数据的特征与训练数据的特征不尽相同。导致在第一批数据上训练的模型参数，在后面批次数据上的表现性能不佳。需要找到一种方法，能够同时对新旧数据具有良好的表现。 针对这个问题，最简单">
 <meta property="og:locale" content="zh_CN">
@@ -33,10 +34,10 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://riddlema.github.io/2026/02/12/incrementallearning/">
+<link rel="canonical" href="https://riddlema.github.io/2026/02/12/IncrementalLearning/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://riddlema.github.io/2026/02/12/incrementallearning/","path":"2026/02/12/incrementallearning/","title":"增量学习的方法总结"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://riddlema.github.io/2026/02/12/IncrementalLearning/","path":"2026/02/12/IncrementalLearning/","title":"增量学习的方法总结"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>增量学习的方法总结 | Riddle的博客</title>
@@ -72,10 +73,8 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Riddle的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -210,7 +209,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/02/12/incrementallearning/">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/02/12/IncrementalLearning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/myavatar.png">
@@ -250,6 +249,21 @@
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
       <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>15 分钟</span>
     </span>
 </div>
 
@@ -324,12 +338,12 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2026/02/12/msrfm/" rel="prev" title="Achieving the Defect Transfer Detection of  Semiconductor Wafer by a Novel Prototype  Learning-Based Semantic Segmentation Network">
+                <a href="/2026/02/12/MSRFM/" rel="prev" title="Achieving the Defect Transfer Detection of  Semiconductor Wafer by a Novel Prototype  Learning-Based Semantic Segmentation Network">
                   <i class="fa fa-angle-left"></i> Achieving the Defect Transfer Detection of  Semiconductor Wafer by a Novel Prototype  Learning-Based Semantic Segmentation Network
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2026/02/13/sam-arts/" rel="next" title="SAM-Arts">
+                <a href="/2026/02/13/SAM-Arts/" rel="next" title="SAM-Arts">
                   SAM-Arts <i class="fa fa-angle-right"></i>
                 </a>
             </div>
@@ -353,10 +367,26 @@
     &copy; 2024 – 
     <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
-      <i class="heart"></i>
+      <i class="fa fa-heart"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">[object Object]</span>
+    <span class="author" itemprop="copyrightHolder">Riddle Ma</span>
   </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">15k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:32</span>
+  </span>
+</div>
 <div class="busuanzi-count">
     <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">
