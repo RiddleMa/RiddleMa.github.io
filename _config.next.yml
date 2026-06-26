@@ -30,7 +30,7 @@ custom_file_path:
   #variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
   #style: source/_data/styles.styl
-
+  style: source/css/_custom.styl
 
 # ---------------------------------------------------------------
 # Scheme Settings
@@ -51,9 +51,9 @@ darkmode: false
 # ---------------------------------------------------------------
 
 favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
+  small: /images/favicon.png
+  medium: /images/favicon.png
+  apple_touch_icon: /images/favicon.png
   safari_pinned_tab: /images/favicon.png
   #android_manifest: /manifest.json
 
@@ -143,10 +143,10 @@ sidebar:
 # Sidebar Avatar
 avatar:
   # Replace the default image and set the url here.
-  #url: /images/myavatar.png
-  #rounded: true               # true=圆形头像，false=方形
-  #opacity: 1                  # 透明度0~1，默认1不透明
-  #rotated: true               # true=鼠标悬浮旋转头像
+  url: /images/myavatar.png
+  rounded: true               # true=圆形头像，false=方形
+  opacity: 1                  # 透明度0~1，默认1不透明
+  rotated: true               # true=鼠标悬浮旋转头像
 
 # Posts / Categories / Tags in sidebar.
 site_state: true
