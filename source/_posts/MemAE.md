@@ -214,7 +214,7 @@ if __name__ == '__main__':
 ```
 > 注意：数据集路径和名称需要根据实际位置修改。
 - 运行完毕后，会在`\processed\UCSD_P2_256`下生成几个文件夹：  
-[](./MemAE/img.png)
+[](img.png)
 ### 3.训练
 ！最好把reqruiment写上  
 没有使用sh命令，直接运行的训练文件`script_training.py`。  

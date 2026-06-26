@@ -202,36 +202,6 @@ toc:
 # Show multilingual switcher in footer.
 language_switcher: false
 
-footer:
-  # Specify the year when the site was setup. If not defined, current year will be used.
-  #since: 2021
-  counter: true  # 开启页脚显示访客统计
-  # Icon between year and copyright info.
-  icon:
-    # Icon name in Font Awesome. See: https://fontawesome.com/icons
-    name: fa fa-heart
-    # If you want to animate the icon, set it to true.
-    animated: false
-    # Change the color of icon, using Hex Code.
-    color: "#ff0000"
-
-  # If not defined, `author` from Hexo `_config.yml` will be used.
-  # Set to `false` to disable the copyright statement.
-  copyright:
-
-  # Powered by Hexo & NexT
-  powered: true
-
-  # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, https://beian.mps.gov.cn
-  beian:
-    enable: false
-    icp:
-    # The digit in the num of gongan beian.
-    gongan_id:
-    # The full num of gongan beian.
-    gongan_num:
-    # The icon for gongan beian. Login and See: https://beian.mps.gov.cn/web/business/businessHome/website
-    gongan_icon_url:
 
 
 # ---------------------------------------------------------------
@@ -257,9 +227,7 @@ post_meta:
 
 # Post wordcount display settings
 # Dependencies: https://github.com/next-theme/hexo-word-counter
-symbols_count_time:
-  separated_meta: true
-  item_text_total: false
+
 
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
 tag_icon: false

@@ -41,6 +41,9 @@ external_link:
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
@@ -150,3 +153,13 @@ lazyload:
   enable: true
   onlypost: true
   loadingImg:
+
+symbols_count_time:
+  symbols: true          # 开启单篇字数统计
+  time: true             # 开启阅读时长
+  total_symbols: true    # 全站总字数
+  total_time: true
+  exclude_codeblock: true# 排除代码块文字（避免代码干扰计数）
+  awl: 2                 # 中文单字平均长度固定2
+  wpm: 50               # 中文阅读速度300字/分钟
+  suffix: "分钟"

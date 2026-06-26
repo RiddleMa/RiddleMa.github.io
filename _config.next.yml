@@ -37,14 +37,17 @@ custom_file_path:
 # ---------------------------------------------------------------
 
 # Schemes
-scheme: Muse
-#scheme: Mist
-#scheme: Pisces
-#scheme: Gemini
+# scheme: Muse
+# scheme: Mist
+# scheme: Pisces
+scheme: Gemini
 
 # Dark Mode
-darkmode: false
-
+darkmode: true
+# 明暗切换按钮
+lightdark:
+  enable: true
+  check_supports: true
 
 # ---------------------------------------------------------------
 # Site Information Settings
@@ -104,7 +107,7 @@ menu:
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
-
+  commonweal: /404/ || heartbeat
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true
@@ -204,33 +207,31 @@ language_switcher: false
 
 footer:
   # Specify the year when the site was setup. If not defined, current year will be used.
-  #since: 2021
+  since: 2024
   counter: true  # 开启页脚显示访客统计
   # Icon between year and copyright info.
   icon:
-    # Icon name in Font Awesome. See: https://fontawesome.com/icons
     name: fa fa-heart
-    # If you want to animate the icon, set it to true.
-    animated: false
-    # Change the color of icon, using Hex Code.
-    color: "#ff0000"
+    animated: true # 爱心持续跳动
+    color: "#ff3333"
 
   # If not defined, `author` from Hexo `_config.yml` will be used.
   # Set to `false` to disable the copyright statement.
-  copyright:
+  # copyright:
+    # enable: false
+    # default_author: "Riddle"
+    # default_url: "https://RiddleMa.github.io"
+  # Powered by Hexo & NexT 标准对象格式
+  powered:
+    enable: false
+    version: false
 
-  # Powered by Hexo & NexT
-  powered: true
-
-  # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, https://beian.mps.gov.cn
+  # Beian ICP and gongan information for Chinese users.
   beian:
     enable: false
     icp:
-    # The digit in the num of gongan beian.
     gongan_id:
-    # The full num of gongan beian.
     gongan_num:
-    # The icon for gongan beian. Login and See: https://beian.mps.gov.cn/web/business/businessHome/website
     gongan_icon_url:
 
 
@@ -256,10 +257,16 @@ post_meta:
   categories: true
 
 # Post wordcount display settings
+# post_wordcount:
+#   enable: true
+#   item_text: true
+#   wordcount: true
+#   min2read: true # 显示阅读需要几分钟
 # Dependencies: https://github.com/next-theme/hexo-word-counter
 symbols_count_time:
-  separated_meta: true
-  item_text_total: false
+  separated_meta: true   # 单独一行展示字数
+  item_text_post: true    # 显示「本文字数：xxx」文字
+  item_text_total: true   # 页脚显示全站总字数
 
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
 tag_icon: false
@@ -363,6 +370,7 @@ body_scrollbar:
 
 codeblock:
   # Code Highlight theme
+  highlight_theme: night # night / night eighties / night blue 都是黑色代码风格
   # All available themes: https://theme-next.js.org/highlight/
   theme:
     light: default
@@ -843,7 +851,7 @@ algolia_search:
 # Local Search
 # Dependencies: https://github.com/next-theme/hexo-generator-searchdb
 local_search:
-  enable: false
+  enable: true
   # Show top n results per article, show all results by setting to -1
   top_n_per_article: 1
   # Unescape html strings to the readable one.
