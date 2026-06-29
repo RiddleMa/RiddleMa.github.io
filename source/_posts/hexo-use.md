@@ -13,7 +13,16 @@ tags:
 ## 多终端使用
 参考：[备份和多终端更新hexo博客步骤](https://blog.csdn.net/shile/article/details/78714189)  
 方便多个电脑之间的同步
-
+## 安装
+1. 安装node.js，作为hexo工作环境；
+2. node.js命令工具npm，安装hexo
+```bash
+npm install -g hexo-cli
+```
+3. hexo其他插件包
+```bash
+npm install ** --save
+```
 ## 常用命令
 - 新增博客推送并同步仓库（向两个分支都推送，主分支master用来展示网页，hexo分支用来备份）
 - 首先是同步仓库，以及使用hexo推送网页
