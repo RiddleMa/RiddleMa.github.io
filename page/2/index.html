@@ -486,7 +486,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-06-26 10:24:27" itemprop="dateModified" datetime="2026-06-26T10:24:27+08:00">2026-06-26</time>
+      <time title="修改时间：2026-06-29 14:16:42" itemprop="dateModified" datetime="2026-06-29T14:16:42+08:00">2026-06-29</time>
     </span>
 
   
@@ -496,14 +496,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>404</span>
+      <span>457</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -524,18 +524,23 @@
 </li>
 </ul>
 <h2 id="多终端使用"><a href="#多终端使用" class="headerlink" title="多终端使用"></a>多终端使用</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shile/article/details/78714189">备份和多终端更新hexo博客步骤</a><br>方便多个电脑之间的同步</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>安装node.js，作为hexo工作环境；</li>
+<li>node.js命令工具npm，安装hexo<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></li>
+<li>hexo其他插件包<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ** --save</span><br></pre></td></tr></table></figure></li>
+</ol>
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
 <li>新增博客推送并同步仓库（向两个分支都推送，主分支master用来展示网页，hexo分支用来备份）</li>
-<li>首先是同步仓库，以及使用hexo推送网页<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 进入user.github.io文件夹，对应本地hexo/blog目录</span><br><span class="line">// 切换到hexo分支</span><br><span class="line">git branch</span><br><span class="line">// 切换到hexo分支</span><br><span class="line">git switch hexo</span><br><span class="line">git checkout hexo   // 或者</span><br><span class="line">git pull origin hexo //本地和远端的融合</span><br><span class="line">hexo new post "new post name"  //写新文章</span><br><span class="line">hexo d -g  //部署，这个是推送到master分支</span><br></pre></td></tr></tbody></table></figure></li>
-<li>下面是推送备份到服务器<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m "xxx"</span><br><span class="line">git push origin hexo  //备份到hexo分支</span><br></pre></td></tr></tbody></table></figure></li>
+<li>首先是同步仓库，以及使用hexo推送网页<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 进入user.github.io文件夹，对应本地hexo/blog目录</span><br><span class="line">// 切换到hexo分支</span><br><span class="line">git branch</span><br><span class="line">// 切换到hexo分支</span><br><span class="line">git switch hexo</span><br><span class="line">git checkout hexo   // 或者</span><br><span class="line">git pull origin hexo //本地和远端的融合</span><br><span class="line">hexo new post &quot;new post name&quot;  //写新文章</span><br><span class="line">hexo d -g  //部署，这个是推送到master分支</span><br></pre></td></tr></table></figure></li>
+<li>下面是推送备份到服务器<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br><span class="line">git push origin hexo  //备份到hexo分支</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="bug记录"><a href="#bug记录" class="headerlink" title="bug记录"></a>bug记录</h2><ul>
 <li>上传后博客更新需要等待几分钟，github博客重加载需要缓冲时间</li>
-<li>图片加载不出来，修改图片时链接出现下面的记录<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update link as:--&gt;/.io//111.jpg</span><br></pre></td></tr></tbody></table></figure>
-原因是<code>hexo-asset-image</code>库有问题，卸载重装即可：<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-asset-image</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image</span><br></pre></td></tr></tbody></table></figure></li>
-<li>加载图片<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">{% asset_img example.jpg This is an example image %}</span><br><span class="line">{% asset_img "spaced asset.jpg" "spaced title" %}</span><br></pre></td></tr></tbody></table></figure></li>
-<li>命令<code>hexo d -g</code>报错<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nothing to commit, working tree clean</span><br><span class="line">错误：fatal: unable to access 'https://github.com/***/': Recv failure: Connection was reset</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br><span class="line">at ChildProcess.&lt;anonymous&gt; (D:\hexo_pro\blog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">at ChildProcess.emit (node:events:513:28)</span><br><span class="line">at ChildProcess.cp.emit (D:\hexo_pro\blog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">at Process.ChildProcess._handle.onexit (node:internal/child_process:293:12)</span><br></pre></td></tr></tbody></table></figure>
-hexo是将<code>public</code>文件夹内容同步到服务器，需要先md文档转为html等格式，<code>public</code>未更新导致的。<br>重新构建<code>public</code>即可。<br>或者是网不好，重试。<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></tbody></table></figure></li>
+<li>图片加载不出来，修改图片时链接出现下面的记录<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update link as:--&gt;/.io//111.jpg</span><br></pre></td></tr></table></figure>
+原因是<code>hexo-asset-image</code>库有问题，卸载重装即可：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-asset-image</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image</span><br></pre></td></tr></table></figure></li>
+<li>加载图片<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img example.jpg This is an example image %&#125;</span><br><span class="line">&#123;% asset_img &quot;spaced asset.jpg&quot; &quot;spaced title&quot; %&#125;</span><br></pre></td></tr></table></figure></li>
+<li>命令<code>hexo d -g</code>报错<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nothing to commit, working tree clean</span><br><span class="line">错误：fatal: unable to access &#x27;https://github.com/***/&#x27;: Recv failure: Connection was reset</span><br><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br><span class="line">at ChildProcess.&lt;anonymous&gt; (D:\hexo_pro\blog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">at ChildProcess.emit (node:events:513:28)</span><br><span class="line">at ChildProcess.cp.emit (D:\hexo_pro\blog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">at Process.ChildProcess._handle.onexit (node:internal/child_process:293:12)</span><br></pre></td></tr></table></figure>
+hexo是将<code>public</code>文件夹内容同步到服务器，需要先md文档转为html等格式，<code>public</code>未更新导致的。<br>重新构建<code>public</code>即可。<br>或者是网不好，重试。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -683,7 +688,7 @@ hexo是将<code>public</code>文件夹内容同步到服务器，需要先md文�
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:32</span>
+    <span title="站点阅读时长">2:33</span>
   </span>
 </div>
 <div class="busuanzi-count">
