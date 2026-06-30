@@ -10,7 +10,33 @@
   <rights>All rights reserved 2026, Riddle Ma</rights>
   <subtitle>技术随笔 | 生活记录</subtitle>
   <title>Riddle的博客</title>
-  <updated>2026-06-26T09:40:18.314Z</updated>
+  <updated>2026-06-29T09:29:56.965Z</updated>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="SEM" scheme="https://riddlema.github.io/tags/SEM/"/>
+    <id>https://riddlema.github.io/2026/06/29/algo-of-MD/</id>
+    <link href="https://riddlema.github.io/2026/06/29/algo-of-MD/"/>
+    <published>2026-06-29T09:18:07.000Z</published>
+    <title>半导体量检测中的算法</title>
+    <updated>2026-06-29T09:29:56.965Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="patternMatch" scheme="https://riddlema.github.io/tags/patternMatch/"/>
+    <category term="CV" scheme="https://riddlema.github.io/tags/CV/"/>
+    <id>https://riddlema.github.io/2026/06/29/siamfc/</id>
+    <link href="https://riddlema.github.io/2026/06/29/siamfc/"/>
+    <published>2026-06-29T09:15:38.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>模板匹配是使用一个固定的模板图像，在另一张图像上寻找与模板图像相同的图像，以进行位置对齐。<br>模板图像为template]]>
+    </summary>
+    <title>使用孪生网络进行图像模板匹配</title>
+    <updated>2026-06-30T01:47:04.852Z</updated>
+  </entry>
   <entry>
     <author>
       <name>Riddle Ma</name>
@@ -180,6 +206,7 @@
     <author>
       <name>Riddle Ma</name>
     </author>
+    <category term="hexo" scheme="https://riddlema.github.io/tags/hexo/"/>
     <id>https://riddlema.github.io/2025/10/17/hexo-use/</id>
     <link href="https://riddlema.github.io/2025/10/17/hexo-use/"/>
     <published>2025-10-17T07:13:23.000Z</published>
@@ -187,7 +214,7 @@
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
     </summary>
     <title>hexo使用记录</title>
-    <updated>2026-06-29T06:16:42.904Z</updated>
+    <updated>2026-06-29T09:24:10.165Z</updated>
   </entry>
   <entry>
     <author>

@@ -1379,7 +1379,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #7867ff;
+    background: #ff3c1d;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3019,7 +3019,7 @@ header.header {
   }
 }
 /* 侧边栏图标格式设置,未生效 */
-.LoveTree {
+.Weibo {
   background-image: url("/images/zhihu.svg");
   background-size: 1em 1em;
   opacity: 0.55;
@@ -3030,6 +3030,6 @@ header.header {
   border-radius: 0rem;
 /*鼠标停留在图标上时，图标呈现发光效果*/
 }
-.LoveTree:hover {
+.Weibo:hover {
   opacity: 1;
 }
