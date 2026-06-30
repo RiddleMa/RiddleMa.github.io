@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+  "build": "hexo generate",
+  "clean": "hexo clean",
+  "generate": "hexo generate && copy public\\404\\index.html public\\404.html",
+  "deploy": "hexo clean && hexo generate && copy public\\404\\index.html public\\404.html && hexo deploy",
+  "server": "hexo server"
   },
   "hexo": {
     "version": "7.3.0"
@@ -26,5 +27,8 @@
     "hexo-server": "^3.0.0",
     "hexo-symbols-count-time": "^0.7.1",
     "hexo-theme-landscape": "^1.0.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1"
   }
 }

@@ -1,7 +1,8 @@
 ---
 title: hexo使用记录
 date: 2025-10-17 15:13:23
-tags:
+tags: 
+  - hexo
 ---
 ## 简介
 这里总结一下使用hexo的一些操作

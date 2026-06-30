@@ -1,0 +1,15 @@
+---
+title: 公益404
+date: 2026-06-30 10:00:00
+layout: page
+comments: false
+permalink: /404/
+---
+<div>
+  <script type="text/plain" src="http://www.qq.com/404/search_children.js"
+          charset="utf-8" homePageUrl="/"
+          homePageName="回到我的主页">
+  </script>
+  <script src="https://qzone.qq.com/gy/404/data.js" charset="utf-8"></script>
+  <script src="https://qzone.qq.com/gy/404/page.js" charset="utf-8"></script>
+</div>
