@@ -27,7 +27,7 @@
       <link href="/2026/06/29/siamfc/"/>
       <url>/2026/06/29/siamfc/</url>
       
-        <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>模板匹配是使用一个固定的模板图像，在另一张图像上寻找与模板图像相同的图像，以进行位置对齐。<br>模板图像为template image，待匹配的图像称为search image，通常search比template大。<br>传统模板匹配方法有基于空间和时间的方法。</p><h2 id="改进及思考"><a href="#改进及思考" class="headerlink" title="改进及思考"></a>改进及思考</h2><p>我的template大小不固定，search也不固定。<br>针对template大小不固定的问题，我现在的做法是：<br>    1. 对template设定目标尺寸，进行缩放，记录缩放比例；<br>    2. 对search同时进行缩放，按照步骤1的缩放比例；<br>    3. search的大小不足</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>模板匹配是使用一个固定的模板图像，在另一张图像上寻找与模板图像相同的图像，以进行位置对齐。<br>模板图像为template image，待匹配的图像称为search image，通常search比template大。<br>传统模板匹配方法有基于空间和时间的方法。</p><h2 id="改进及思考"><a href="#改进及思考" class="headerlink" title="改进及思考"></a>改进及思考</h2><h3 id="1-一种做法"><a href="#1-一种做法" class="headerlink" title="1. 一种做法"></a>1. 一种做法</h3><p>我的template大小不固定，search也不固定。<br>假设要固定template和search的长宽，template–&gt;152，search–&gt;512<br>针对template大小不固定的问题，我现在的做法是：<br>    1. 裁剪template，保证template为正方形；<br>    2. 如果template边长大于152，设定目标尺寸，进行缩放，对search同时进行缩放；<br>    3. 如果template边长小于152，padding到152。<br>这种做法的好处是，模型接收固定长度的图像。</p><h3 id="2-另一种做法"><a href="#2-另一种做法" class="headerlink" title="2. 另一种做法"></a>2. 另一种做法</h3><p>不对图像进行resize，只做裁剪；<br>对模型进行修改，使得其能够接收不固定长度图像；<br>经过验证，这种方法效果很差，原因未知；</p>]]></content>
       
       
       

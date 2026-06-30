@@ -186,7 +186,7 @@
 </div>
   <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://riddlema.github.io/LoveTree/" title="LoveTree → https:&#x2F;&#x2F;riddlema.github.io&#x2F;LoveTree&#x2F;" rel="noopener me"><i class="fas fa-heartbeat fa-fw"></i>LoveTree</a>
+        <a href="https://riddlema.github.io/LoveTree/" title="LoveTree → https:&#x2F;&#x2F;riddlema.github.io&#x2F;LoveTree&#x2F;" rel="noopener me"><i class="fas fa-gift fa-fw"></i>LoveTree</a>
       </span>
   </div>
 
@@ -330,7 +330,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-06-30 09:47:04" itemprop="dateModified" datetime="2026-06-30T09:47:04+08:00">2026-06-30</time>
+      <time title="修改时间：2026-06-30 10:47:49" itemprop="dateModified" datetime="2026-06-30T10:47:49+08:00">2026-06-30</time>
     </span>
 
   
@@ -340,14 +340,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>254</span>
+      <span>439</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -359,7 +359,8 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>模板匹配是使用一个固定的模板图像，在另一张图像上寻找与模板图像相同的图像，以进行位置对齐。<br>模板图像为template image，待匹配的图像称为search image，通常search比template大。<br>传统模板匹配方法有基于空间和时间的方法。</p>
-<h2 id="改进及思考"><a href="#改进及思考" class="headerlink" title="改进及思考"></a>改进及思考</h2><p>我的template大小不固定，search也不固定。<br>针对template大小不固定的问题，我现在的做法是：<br>    1. 对template设定目标尺寸，进行缩放，记录缩放比例；<br>    2. 对search同时进行缩放，按照步骤1的缩放比例；<br>    3. search的大小不足</p>
+<h2 id="改进及思考"><a href="#改进及思考" class="headerlink" title="改进及思考"></a>改进及思考</h2><h3 id="1-一种做法"><a href="#1-一种做法" class="headerlink" title="1. 一种做法"></a>1. 一种做法</h3><p>我的template大小不固定，search也不固定。<br>假设要固定template和search的长宽，template–&gt;152，search–&gt;512<br>针对template大小不固定的问题，我现在的做法是：<br>    1. 裁剪template，保证template为正方形；<br>    2. 如果template边长大于152，设定目标尺寸，进行缩放，对search同时进行缩放；<br>    3. 如果template边长小于152，padding到152。<br>这种做法的好处是，模型接收固定长度的图像。</p>
+<h3 id="2-另一种做法"><a href="#2-另一种做法" class="headerlink" title="2. 另一种做法"></a>2. 另一种做法</h3><p>不对图像进行resize，只做裁剪；<br>对模型进行修改，使得其能够接收不固定长度图像；<br>经过验证，这种方法效果很差，原因未知；</p>
 
       
     </div>
@@ -1963,7 +1964,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:35</span>
+    <span title="站点阅读时长">2:37</span>
   </span>
 </div>
 <div class="busuanzi-count">
