@@ -104,8 +104,10 @@ menu:
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
+  photos: /photos/ || fa fa-camera # 相册入口
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
+  guestbook: /guestbook/ || fa fa-comment # 这一行是留言板
   commonweal: /404/ || fa fa-heartbeat
 # Enable / Disable menu icons / item badges.
 menu_settings:
@@ -182,7 +184,7 @@ links_settings:
 
 links:
   #Title: https://example.com
-
+  白荼日记: https://blog.iletter.top/
 # Table of Contents in the Sidebar
 # Front-matter variable (nonsupport wrap expand_all).
 toc:
@@ -594,7 +596,7 @@ pjax: false
 
 # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
 # For more information: https://fancyapps.com/fancybox/
-fancybox: false
+fancybox: true
 
 # Medium Zoom is a JavaScript library for zooming images like Medium.
 # Warning: Do not enable both `fancybox` and `mediumzoom`.
@@ -603,7 +605,7 @@ mediumzoom: false
 
 # Vanilla JavaScript plugin for lazyloading images.
 # For more information: https://apoorv.pro/lozad.js/demo/
-lazyload: false
+lazyload: true
 
 # Automatically insert whitespace between CJK and half-width characters.
 # For more information: https://github.com/vinta/pangu.js
@@ -682,7 +684,7 @@ comments:
   style: tabs
   # Choose a comment system to be displayed by default.
   # Available values: disqus | disqusjs | livere | gitalk | utterances | isso
-  active:
+  active: giscus
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Lazyload all comment systems.
@@ -694,6 +696,18 @@ comments:
     #  order: -1
     #gitalk:
     #  order: -2
+giscus:
+  enable: true
+  repo: riddlema/riddlema.github.io
+  repo_id: MDEwOlJlcG9zaXRvcnkyODE2MjQ1MDY=
+  category: Comments
+  category_id: DIC_kwDOEMk_us4DAWKX
+  mapping: pathname
+  reactions_enabled: 1
+  theme: light
+  dark_theme: dark_dimmed
+  input_position: bottom
+  lang: zh-CN
 
 # Disqus
 # For more information: https://disqus.com

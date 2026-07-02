@@ -3,6 +3,9 @@ title: hexo使用记录
 date: 2025-10-17 15:13:23
 tags: 
   - hexo
+zh_tags:
+  - Hexo博客
+
 ---
 ## 简介
 这里总结一下使用hexo的一些操作
@@ -44,6 +47,41 @@ git add .
 git commit -m "xxx"
 git push origin hexo  //备份到hexo分支
 ```
+
+## tags中英文问题
+不想牺牲 URL 美观，又想页面展示中文标签，Hexo 可以通过分类 + 标签分离实现：  
+1. tags 字段只用英文（用于链接、SEO、筛选）  
+2. 新增自定义字段 zh_tags 存放中文，修改主题模板，页面渲染中文标签，底层路由仍为英文  
+```markdown
+tags: hexo
+zh_tags: Hexo博客搭建教程
+```
+路径：`themes/next/layout/_macro/post.swig`
+```njk
+{%- if post.tags and post.tags.length %}
+  {%- set tag_indicate = '<i class="fa fa-tag"></i>' if theme.tag_icon else '#' %}
+  <div class="post-tags">
+    {%- for tag in post.tags.toArray() %}
+      <a href="{{ url_for(tag.path) }}" rel="tag">{{ tag_indicate }} {{ tag.name }}</a>
+    {%- endfor %}
+  </div>
+{%- endif %}
+```
+这段是读取 post.tags（英文标签对象），tag.name 输出英文名称。修改为：
+```njk
+{%- if post.tags and post.tags.length %}
+  {%- set tag_indicate = '<i class="fa fa-tag"></i>' if theme.tag_icon else '#' %}
+  <div class="post-tags">
+    {%- set zhTagArr = post.zh_tags || [] %}
+    {%- for tag in post.tags.toArray() %}
+      {%- set idx = loop.index0 %}
+      {%- set showText = zhTagArr[idx] || tag.name %}
+      <a href="{{ url_for(tag.path) }}" rel="tag">{{ tag_indicate }} {{ showText }}</a>
+    {%- endfor %}
+  </div>
+{%- endif %}
+```
+
 ## bug记录
 - 上传后博客更新需要等待几分钟，github博客重加载需要缓冲时间
 - 图片加载不出来，修改图片时链接出现下面的记录

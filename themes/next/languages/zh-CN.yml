@@ -15,10 +15,12 @@ menu:
   schedule: 日程表
   sitemap: 站点地图
   commonweal: 公益 404
+  photos: 相册
+  guestbook: 留言板
 sidebar:
   overview: 站点概览
   toc: 文章目录
-  links: 链接
+  links: 友情链接
 post:
   posted: 发表于
   edited: 更新于
