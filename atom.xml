@@ -10,7 +10,24 @@
   <rights>All rights reserved 2026, Riddle Ma</rights>
   <subtitle>技术随笔 | 生活记录</subtitle>
   <title>Riddle的博客</title>
-  <updated>2026-06-29T09:29:56.965Z</updated>
+  <updated>2026-07-02T09:57:06.738Z</updated>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="blog" scheme="https://riddlema.github.io/tags/blog/"/>
+    <id>https://riddlema.github.io/2026/07/02/think-about-blog/</id>
+    <link href="https://riddlema.github.io/2026/07/02/think-about-blog/"/>
+    <published>2026-07-02T07:11:57.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>这里主要是把自己写博客的一些思路写下来。</p>
+</blockquote>
+<h2 id="思考"><a href="#思考" class="headerlink"]]>
+    </summary>
+    <title>关于博客的想法</title>
+    <updated>2026-07-02T09:57:06.738Z</updated>
+  </entry>
   <entry>
     <author>
       <name>Riddle Ma</name>
@@ -35,7 +52,7 @@
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>模板匹配是使用一个固定的模板图像，在另一张图像上寻找与模板图像相同的图像，以进行位置对齐。<br>模板图像为template]]>
     </summary>
     <title>使用孪生网络进行图像模板匹配</title>
-    <updated>2026-06-30T02:47:49.161Z</updated>
+    <updated>2026-06-30T07:22:41.358Z</updated>
   </entry>
   <entry>
     <author>
@@ -214,7 +231,7 @@
       <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
     </summary>
     <title>hexo使用记录</title>
-    <updated>2026-06-29T09:24:10.165Z</updated>
+    <updated>2026-07-02T07:04:03.504Z</updated>
   </entry>
   <entry>
     <author>
