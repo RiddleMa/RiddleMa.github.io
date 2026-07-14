@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Riddle Ma</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://riddlema.github.io/</id>
+  <link href="https://riddlema.github.io/" rel="alternate"/>
+  <link href="https://riddlema.github.io/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, Riddle Ma</rights>
+  <subtitle>技术随笔 | 生活记录</subtitle>
+  <title>Riddle的博客</title>
+  <updated>2026-07-13T06:36:47.611Z</updated>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="blog" scheme="https://riddlema.github.io/tags/blog/"/>
+    <id>https://riddlema.github.io/2026/07/02/think-about-blog/</id>
+    <link href="https://riddlema.github.io/2026/07/02/think-about-blog/"/>
+    <published>2026-07-02T07:11:57.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>这里主要是把自己写博客的一些思路写下来。</p>
+</blockquote>
+<h2 id="思考"><a href="#思考" class="headerlink"]]>
+    </summary>
+    <title>关于博客的想法</title>
+    <updated>2026-07-13T06:36:47.611Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="SEM" scheme="https://riddlema.github.io/tags/sem/"/>
+    <id>https://riddlema.github.io/2026/06/29/algo-of-sem/</id>
+    <link href="https://riddlema.github.io/2026/06/29/algo-of-sem/"/>
+    <published>2026-06-29T09:18:07.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
+    </summary>
+    <title>半导体量检测中的算法</title>
+    <updated>2026-07-13T06:36:31.318Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="patternMatch" scheme="https://riddlema.github.io/tags/patternmatch/"/>
+    <category term="CV" scheme="https://riddlema.github.io/tags/cv/"/>
+    <id>https://riddlema.github.io/2026/06/29/siamfc/</id>
+    <link href="https://riddlema.github.io/2026/06/29/siamfc/"/>
+    <published>2026-06-29T09:15:38.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>模板匹配是使用一个固定的模板图像，在另一张图像上寻找与模板图像相同的图像，以进行位置对齐。<br>模板图像为template]]>
+    </summary>
+    <title>使用孪生网络进行图像模板匹配</title>
+    <updated>2026-06-30T07:22:41.358Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <id>https://riddlema.github.io/2026/03/03/frequency-domain-filtering/</id>
+    <link href="https://riddlema.github.io/2026/03/03/frequency-domain-filtering/"/>
+    <published>2026-03-03T01:42:40.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
+    </summary>
+    <title>频域滤波使用的注意事项</title>
+    <updated>2026-06-26T09:40:18.314Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="半导体" scheme="https://riddlema.github.io/tags/%E5%8D%8A%E5%AF%BC%E4%BD%93/"/>
+    <id>https://riddlema.github.io/2026/02/28/semi-company/</id>
+    <link href="https://riddlema.github.io/2026/02/28/semi-company/"/>
+    <published>2026-02-28T03:22:19.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
+    </summary>
+    <title>半导体公司整理</title>
+    <updated>2026-02-28T08:46:23.321Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="半导体" scheme="https://riddlema.github.io/tags/%E5%8D%8A%E5%AF%BC%E4%BD%93/"/>
+    <id>https://riddlema.github.io/2026/02/26/defect-type/</id>
+    <link href="https://riddlema.github.io/2026/02/26/defect-type/"/>
+    <published>2026-02-26T01:46:27.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
+    </summary>
+    <title>常见的半导体缺陷类型总结</title>
+    <updated>2026-06-26T07:52:19.277Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <id>https://riddlema.github.io/2026/02/12/incremental-learning/</id>
+    <link href="https://riddlema.github.io/2026/02/12/incremental-learning/"/>
+    <published>2026-02-12T07:09:28.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="背景"><a href="#背景" class="headerlink"]]>
+    </summary>
+    <title>增量学习的方法总结</title>
+    <updated>2026-02-12T07:12:20.142Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <id>https://riddlema.github.io/2026/02/12/msrfm/</id>
+    <link href="https://riddlema.github.io/2026/02/12/msrfm/"/>
+    <published>2026-02-12T07:09:09.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>论文地址：<a]]>
+    </summary>
+    <title>Achieving the Defect Transfer Detection of  Semiconductor Wafer by a Novel Prototype  Learning-Based Semantic Segmentation Network</title>
+    <updated>2026-02-12T07:10:59.988Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <id>https://riddlema.github.io/2026/02/12/memae/</id>
+    <link href="https://riddlema.github.io/2026/02/12/memae/"/>
+    <published>2026-02-12T07:08:53.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
+    </summary>
+    <title>MemAE代码复现及自有数据集测试</title>
+    <updated>2026-06-26T07:54:27.447Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <id>https://riddlema.github.io/2026/02/12/sam-use/</id>
+    <link href="https://riddlema.github.io/2026/02/12/sam-use/"/>
+    <published>2026-02-12T06:57:45.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>SAM已经更新到SAM3了，这里是SAM2的使用介绍<br>SAM2更新过一版，最终版本是SAM2.1版<br>SAM3的使用方法类似，后面研究下；</p>
+</blockquote>
+<p>SAM2自带三个接口文件：</p>
+<ul>
+<li>b]]>
+    </summary>
+    <title>SAM的原理和使用方法</title>
+    <updated>2026-02-12T07:01:41.714Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <id>https://riddlema.github.io/2026/01/23/markdown/</id>
+    <link href="https://riddlema.github.io/2026/01/23/markdown/"/>
+    <published>2026-01-23T07:51:52.000Z</published>
+    <summary>
+      <![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这里记录使用markdown的一些常用写法。<br>总是忘记，就写在这里。</p>
+<h1 id="记录"><a href="#记录"]]>
+    </summary>
+    <title>markdown使用记录</title>
+    <updated>2026-02-04T06:44:50.781Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <id>https://riddlema.github.io/2026/01/23/sam-yolo/</id>
+    <link href="https://riddlema.github.io/2026/01/23/sam-yolo/"/>
+    <published>2026-01-23T06:39:56.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
+    </summary>
+    <title>Sam+YOLO文献调研</title>
+    <updated>2026-06-26T07:51:23.968Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <id>https://riddlema.github.io/2025/11/13/yolo-use1/</id>
+    <link href="https://riddlema.github.io/2025/11/13/yolo-use1/"/>
+    <published>2025-11-13T09:59:26.000Z</published>
+    <summary>
+      <![CDATA[<h1 id="YOLO使用记录"><a href="#YOLO使用记录" class="headerlink" title="YOLO使用记录"></a>YOLO使用记录</h1><h2 id="简介"><a href="#简介" class="headerlink"]]>
+    </summary>
+    <title>YOLO使用记录</title>
+    <updated>2026-01-23T10:29:53.031Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="环保" scheme="https://riddlema.github.io/tags/%E7%8E%AF%E4%BF%9D/"/>
+    <id>https://riddlema.github.io/2025/11/13/wax-moth/</id>
+    <link href="https://riddlema.github.io/2025/11/13/wax-moth/"/>
+    <published>2025-11-13T09:19:29.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简述"><a href="#简述" class="headerlink"]]>
+    </summary>
+    <title>神器的蜡虫</title>
+    <updated>2026-01-23T10:29:39.624Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Riddle Ma</name>
+    </author>
+    <category term="hexo" scheme="https://riddlema.github.io/tags/hexo/"/>
+    <id>https://riddlema.github.io/2025/10/17/hexo-use/</id>
+    <link href="https://riddlema.github.io/2025/10/17/hexo-use/"/>
+    <published>2025-10-17T07:13:23.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="简介"><a href="#简介" class="headerlink"]]>
+    </summary>
+    <title>hexo使用记录</title>
+    <updated>2026-07-13T07:15:18.705Z</updated>
+  </entry>
+</feed>

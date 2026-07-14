@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"riddlema.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"night"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":null,"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介这里总结一下使用hexo的一些操作  hexo是快速构建博客的工具 目前使用git同时管理项目代码和部署网页 项目代码就是整个项目的同步，对应hexo分支 部署网页是hexo展示用的web页面，对应master分支    多终端使用参考：备份和多终端更新hexo博客步骤方便多个电脑之间的同步 安装 安装node.js，作为hexo工作环境； node.js命令工具npm，安装hexo  1np">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo使用记录">
+<meta property="og:url" content="https://riddlema.github.io/2025/10/17/hexo-use/index.html">
+<meta property="og:site_name" content="Riddle的博客">
+<meta property="og:description" content="简介这里总结一下使用hexo的一些操作  hexo是快速构建博客的工具 目前使用git同时管理项目代码和部署网页 项目代码就是整个项目的同步，对应hexo分支 部署网页是hexo展示用的web页面，对应master分支    多终端使用参考：备份和多终端更新hexo博客步骤方便多个电脑之间的同步 安装 安装node.js，作为hexo工作环境； node.js命令工具npm，安装hexo  1np">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-17T07:13:23.000Z">
+<meta property="article:modified_time" content="2026-07-13T07:15:18.705Z">
+<meta property="article:author" content="Riddle Ma">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://riddlema.github.io/2025/10/17/hexo-use/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://riddlema.github.io/2025/10/17/hexo-use/","path":"2025/10/17/hexo-use/","title":"hexo使用记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>hexo使用记录 | Riddle的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+    <link rel="stylesheet" href="/css/gallery.css" media="print" onload="this.media='all'">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="Riddle的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Riddle的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技术随笔 | 生活记录</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-photos"><a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>相册</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-comment fa-fw"></i>留言板</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">多终端使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tags%E4%B8%AD%E8%8B%B1%E6%96%87%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">tags中英文问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8D%89%E7%A8%BF%E4%BD%BF%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">草稿使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bug%E8%AE%B0%E5%BD%95"><span class="nav-number">7.</span> <span class="nav-text">bug记录</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riddle Ma"
+      src="/images/myavatar.png">
+  <p class="site-author-name" itemprop="name">Riddle Ma</p>
+  <div class="site-description" itemprop="description">Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://riddlema.github.io/LoveTree/" title="LoveTree → https:&#x2F;&#x2F;riddlema.github.io&#x2F;LoveTree&#x2F;" rel="noopener me"><i class="fas fa-gift fa-fw"></i>LoveTree</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          友情链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.iletter.top/" title="https:&#x2F;&#x2F;blog.iletter.top&#x2F;" rel="noopener" target="_blank">白荼日记</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2025/10/17/hexo-use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="hexo使用记录 | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo使用记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-10-17 15:13:23" itemprop="dateCreated datePublished" datetime="2025-10-17T15:13:23+08:00">2025-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-13 15:15:18" itemprop="dateModified" datetime="2026-07-13T15:15:18+08:00">2026-07-13</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-book-open"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这里总结一下使用hexo的一些操作</p>
+<ul>
+<li>hexo是快速构建博客的工具</li>
+<li>目前使用git同时管理项目代码和部署网页<ul>
+<li>项目代码就是整个项目的同步，对应hexo分支</li>
+<li>部署网页是hexo展示用的web页面，对应master分支</li>
+</ul>
+</li>
+</ul>
+<h2 id="多终端使用"><a href="#多终端使用" class="headerlink" title="多终端使用"></a>多终端使用</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shile/article/details/78714189">备份和多终端更新hexo博客步骤</a><br>方便多个电脑之间的同步</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>安装node.js，作为hexo工作环境；</li>
+<li>node.js命令工具npm，安装hexo</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>hexo其他插件包</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ** --save</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>新增博客推送并同步仓库（向两个分支都推送，主分支master用来展示网页，hexo分支用来备份）</li>
+<li>首先是同步仓库，以及使用hexo推送网页</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 进入user.github.io文件夹，对应本地hexo/blog目录</span><br><span class="line">// 切换到hexo分支</span><br><span class="line">git branch</span><br><span class="line">// 切换到hexo分支</span><br><span class="line">git switch hexo</span><br><span class="line">git checkout hexo   // 或者</span><br><span class="line">git pull origin hexo //本地和远端的融合</span><br><span class="line">hexo new post &quot;new post name&quot;  //写新文章</span><br><span class="line">hexo d -g  //部署，这个是推送到master分支</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下面是推送备份到服务器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br><span class="line">git push origin hexo  //备份到hexo分支</span><br></pre></td></tr></table></figure>
+
+<h2 id="tags中英文问题"><a href="#tags中英文问题" class="headerlink" title="tags中英文问题"></a>tags中英文问题</h2><p>不想牺牲 URL 美观，又想页面展示中文标签，Hexo 可以通过分类 + 标签分离实现：  </p>
+<ol>
+<li>tags 字段只用英文（用于链接、SEO、筛选）  </li>
+<li>新增自定义字段 zh_tags 存放中文，修改主题模板，页面渲染中文标签，底层路由仍为英文</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tags: hexo</span><br><span class="line">zh<span class="emphasis">_tags: Hexo博客搭建教程</span></span><br></pre></td></tr></table></figure>
+<p>路径：<code>themes/next/layout/_macro/post.swig</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">  &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">  &lt;div class=&quot;post-tags&quot;&gt;</span><br><span class="line">    &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">      &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">    &#123;%- endfor %&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>这段是读取 post.tags（英文标签对象），tag.name 输出英文名称。修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">  &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">  &lt;div class=&quot;post-tags&quot;&gt;</span><br><span class="line">    &#123;%- set zhTagArr = post.zh_tags || [] %&#125;</span><br><span class="line">    &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">      &#123;%- set idx = loop.index0 %&#125;</span><br><span class="line">      &#123;%- set showText = zhTagArr[idx] || tag.name %&#125;</span><br><span class="line">      &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; showText &#125;&#125;&lt;/a&gt;</span><br><span class="line">    &#123;%- endfor %&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="草稿使用"><a href="#草稿使用" class="headerlink" title="草稿使用"></a>草稿使用</h2><p>创建草稿</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft &quot;你的草稿标题&quot;</span><br></pre></td></tr></table></figure>
+<p>预览草稿</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure>
+<p>发布草稿</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish post &quot;你的草稿标题&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="bug记录"><a href="#bug记录" class="headerlink" title="bug记录"></a>bug记录</h2><ul>
+<li>上传后博客更新需要等待几分钟，github博客重加载需要缓冲时间</li>
+<li>图片加载不出来，修改图片时链接出现下面的记录</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update link as:--&gt;/.io//111.jpg</span><br></pre></td></tr></table></figure>
+<p>原因是<code>hexo-asset-image</code>库有问题，卸载重装即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-asset-image</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image</span><br></pre></td></tr></table></figure>
+<ul>
+<li>加载图片</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img example.jpg This is an example image %&#125;</span><br><span class="line">&#123;% asset_img &quot;spaced asset.jpg&quot; &quot;spaced title&quot; %&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令<code>hexo d -g</code>报错</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nothing to commit, working tree clean</span><br><span class="line">错误：fatal: unable to access &#x27;https://github.com/***/&#x27;: Recv failure: Connection was reset</span><br><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br><span class="line">at ChildProcess.&lt;anonymous&gt; (D:\hexo_pro\blog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">at ChildProcess.emit (node:events:513:28)</span><br><span class="line">at ChildProcess.cp.emit (D:\hexo_pro\blog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">at Process.ChildProcess._handle.onexit (node:internal/child_process:293:12)</span><br></pre></td></tr></table></figure>
+<p>hexo是将<code>public</code>文件夹内容同步到服务器，需要先md文档转为html等格式，<code>public</code>未更新导致的。<br>重新构建<code>public</code>即可。<br>或者是网不好，重试。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>图片路径索引到其他文章目录<br>原因是文章中出现了大小写共用的问题，批量渲染上下文缓存污染 + 驼峰大写文件名破坏资源匹配。  </p>
+<ol>
+<li>大写驼峰文件名是污染源头<br>Hexo 内部处理文章 slug、资源目录时：<br>大写名称缓存 key 与磁盘目录大小写不匹配，渲染第一篇大写文章后，全局上下文被锁死；<br>后面渲染所有小写横杠文章，图片都会错误复用大写文章的路由前缀。</li>
+<li>hexo-renderer-marked 批量渲染共享上下文漏洞<br>开启 post_asset_folder: true 时，多文章循环渲染共用同一个临时变量，上一篇文章的 permalink、asset_dir 不会重置，直接带到下一篇，路径拼接错乱。<br>只要存在任意一篇纯大写&#x2F;驼峰文章，后面全部文章图片路径都会串到它的目录下。</li>
+</ol>
+<p>解决方法是所有文章名都使用小写。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"># Hexo博客</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/11/13/wax-moth/" rel="next" title="神器的蜡虫">
+                  神器的蜡虫 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Riddle Ma</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">26k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:19</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"riddlema/riddlema.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkyODE2MjQ1MDY=","category":"Comments","category_id":"DIC_kwDOEMk_us4DAWKX","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"bottom","loading":"lazy","dark_theme":"dark_dimmed"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<!-- hexo injector body_end start -->
+    <script src="/js/gallery.js" async></script>
+<!-- hexo injector body_end end --></body>
+</html>

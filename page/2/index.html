@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"riddlema.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"night"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":null,"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Riddle的博客">
+<meta property="og:url" content="https://riddlema.github.io/page/2/index.html">
+<meta property="og:site_name" content="Riddle的博客">
+<meta property="og:description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Riddle Ma">
+<meta property="article:tag" content="Hexo,Next,编程,后端,技术笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://riddlema.github.io/page/2/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/2/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Riddle的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+    <link rel="stylesheet" href="/css/gallery.css" media="print" onload="this.media='all'">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="Riddle的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Riddle的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技术随笔 | 生活记录</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-photos"><a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>相册</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-comment fa-fw"></i>留言板</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riddle Ma"
+      src="/images/myavatar.png">
+  <p class="site-author-name" itemprop="name">Riddle Ma</p>
+  <div class="site-description" itemprop="description">Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://riddlema.github.io/LoveTree/" title="LoveTree → https:&#x2F;&#x2F;riddlema.github.io&#x2F;LoveTree&#x2F;" rel="noopener me"><i class="fas fa-gift fa-fw"></i>LoveTree</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          友情链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.iletter.top/" title="https:&#x2F;&#x2F;blog.iletter.top&#x2F;" rel="noopener" target="_blank">白荼日记</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/01/23/markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/01/23/markdown/" class="post-title-link" itemprop="url">markdown使用记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-23 15:51:52" itemprop="dateCreated datePublished" datetime="2026-01-23T15:51:52+08:00">2026-01-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-02-04 14:44:50" itemprop="dateModified" datetime="2026-02-04T14:44:50+08:00">2026-02-04</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>212</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这里记录使用markdown的一些常用写法。<br>总是忘记，就写在这里。</p>
+<h1 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h1><h2 id="1-页面内链接"><a href="#1-页面内链接" class="headerlink" title="1. 页面内链接"></a>1. 页面内链接</h2><ul>
+<li>两种方法，要注意的点：<ul>
+<li>采用小写字母</li>
+<li>使用连字符分隔单词，不要用空格和特殊字符</li>
+<li>保持命名唯一性</li>
+<li>markdown语法有些平台不能解析</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-markdown语法"><a href="#1-1-markdown语法" class="headerlink" title="1.1 markdown语法"></a>1.1 markdown语法</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 定义锚点 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">&quot;section1&quot;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="section">## 第一部分内容</span></span><br><span class="line"></span><br><span class="line">[<span class="string">跳转到第二部分</span>](<span class="link">#section2</span>)</span><br><span class="line"></span><br><span class="line">&lt;!-- 目标锚点 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">&quot;section2&quot;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="section">## 第二部分内容</span></span><br><span class="line"></span><br><span class="line">[<span class="string">返回顶部</span>](<span class="link">#section1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-html语法"><a href="#1-2-html语法" class="headerlink" title="1.2 html语法"></a>1.2 html语法</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 目录</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">第一章</span>](<span class="link">#chapter-1</span>)</span><br><span class="line"><span class="bullet">-</span> [<span class="string">第二章</span>](<span class="link">#chapter-2</span>)</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">&quot;chapter-1&quot;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="section">## 第一章</span></span><br><span class="line">内容...</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">&quot;chapter-2&quot;</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="section">## 第二章</span></span><br><span class="line">内容...</span><br><span class="line"></span><br><span class="line">[<span class="string">返回第一章</span>](<span class="link">#chapter-1</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目前这两种方法都只能给目录索引，如果在非目录位置使用链接，github上出错。</li>
+</ul>
+<h2 id="引用图片"><a href="#引用图片" class="headerlink" title="引用图片"></a>引用图片</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">替代文本</span>](<span class="link">图片URL &quot;可选标题&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="折叠块"><a href="#折叠块" class="headerlink" title="折叠块"></a>折叠块</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">details</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">summary</span>&gt;</span></span>点击展开详细说明<span class="language-xml"><span class="tag">&lt;/<span class="name">summary</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">这里是折叠的详细内容，支持 Markdown 语法。</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">details</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">| 层级 | 符号 | 用途 |</span><br><span class="line">|------|------|------|</span><br><span class="line">| 1 级 | #    | 大章 |</span><br><span class="line">| 2 级 | ##   | 小节 |</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="标准文档示例"><a href="#标准文档示例" class="headerlink" title="标准文档示例"></a>标准文档示例</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 目录1</span></span><br><span class="line">[toc]</span><br><span class="line"></span><br><span class="line"><span class="section">## 目录2</span></span><br><span class="line"><span class="bullet">-</span> [<span class="string">1 级标题</span>](<span class="link">#1-级标题</span>)</span><br><span class="line"><span class="bullet">  -</span> [<span class="string">1.1 2 级标题</span>](<span class="link">#11-2-级标题</span>)</span><br><span class="line"></span><br><span class="line"><span class="section"># 项目文档：XXX 系统设计</span></span><br><span class="line"><span class="section">## 1 需求分析</span></span><br><span class="line"><span class="section">### 1.1 功能需求</span></span><br><span class="line"><span class="bullet">-</span> 功能 A</span><br><span class="line"><span class="bullet">  -</span> 子功能 A1</span><br><span class="line"><span class="bullet">  -</span> 子功能 A2</span><br><span class="line"><span class="section">### 1.2 非功能需求</span></span><br><span class="line"><span class="bullet">1.</span> 性能</span><br><span class="line"><span class="bullet">2.</span> 安全</span><br><span class="line"></span><br><span class="line"><span class="section">## 2 架构设计</span></span><br><span class="line"><span class="section">### 2.1 整体架构</span></span><br><span class="line"><span class="quote">&gt; 采用微服务架构，分为三层：</span></span><br><span class="line"><span class="quote">&gt; - 接入层</span></span><br><span class="line"><span class="quote">&gt; - 业务层</span></span><br><span class="line"><span class="quote">&gt; - 数据层</span></span><br><span class="line"></span><br><span class="line"><span class="section">### 2.2 模块划分</span></span><br><span class="line">---</span><br><span class="line"><span class="section">## 附录</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：markdown不适用<code>[toc]</code>，建议使用目录2的格式</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/01/23/sam-yolo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/01/23/sam-yolo/" class="post-title-link" itemprop="url">Sam+YOLO文献调研</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-23 14:39:56" itemprop="dateCreated datePublished" datetime="2026-01-23T14:39:56+08:00">2026-01-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-06-26 15:51:23" itemprop="dateModified" datetime="2026-06-26T15:51:23+08:00">2026-06-26</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>36 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>开个新章节，这里记录Sam+YOLO方法的一些论文。</li>
+<li>工作需要，看了一些这方面的论文，但是这些方法说实话都是狗尾续貂，创新点不那么可靠。</li>
+<li>但是看了终归要总结一下，方便后面进行写作。</li>
+<li>我的目标是实现具有高泛化性的缺陷分割模型，YOLO具有快速检测的优点，在工业场景中应用比较广泛；而SAM号称Segment Anything，无需任何训练就能够适应大部分的场景。</li>
+<li>我的应用场景是半导体的缺陷检测，SAM并没有这方面的预训练数据，所以直接使用效果不佳，YOLO也有同样的问题，虽然快速，但是预测失效（<strong>要验证</strong>）。</li>
+</ul>
+<h2 id="文献列表"><a href="#文献列表" class="headerlink" title="文献列表"></a>文献列表</h2><ul>
+<li><p>[Automatic Lung Segmentation in Chest X-Ray Images Using SAM With Prompts From YOLO]</p>
+</li>
+<li><p>(#article-1)  这里使用索引会导致全格式改变</p>
+</li>
+<li><p>[Intraoperative Glioma Segmentation with YOLO + SAM for Improved Accuracy in Tumor Resection]</p>
+</li>
+<li><p>[Nuclei Segmentation in Hepatocytes Using YOLO and SAM]</p>
+</li>
+<li><p>Quantifying Bubble-Induced Diffusion Resistance Through Real-Time Sam-Assisted Yolo High Density Bubble Detection Algorithm</p>
+</li>
+<li><p>Self-Prompting Polyp Segmentation in Colonoscopy using Hybrid Yolo-SAM 2 Model</p>
+</li>
+<li><p>Soybean pod and seed counting in both outdoor fields and  indoor laboratories using unions of deep neural networks</p>
+</li>
+<li><p>Yolo-MLSAM: SAM Based Breast Cancer Microcalcification Cluster-Segmentation Method</p>
+</li>
+<li><p>YS3AM: Adaptive 3D Reconstruction and Harvesting  Target Detection for Clustered Green Asparagus</p>
+</li>
+</ul>
+<h2 id="分文章介绍"><a href="#分文章介绍" class="headerlink" title="分文章介绍"></a>分文章介绍</h2><p><a id="article-1"></a></p>
+<h3 id="Automatic-Lung-Segmentation-in-Chest-X-Ray-Images-Using-SAM-With-Prompts-From-YOLO"><a href="#Automatic-Lung-Segmentation-in-Chest-X-Ray-Images-Using-SAM-With-Prompts-From-YOLO" class="headerlink" title="Automatic Lung Segmentation in Chest X-Ray Images Using SAM With Prompts From YOLO"></a>Automatic Lung Segmentation in Chest X-Ray Images Using SAM With Prompts From YOLO</h3><ul>
+<li>期刊：IEEE ACCESS</li>
+<li>日期：2024.9</li>
+<li>作者：西班牙 加迪斯大学</li>
+<li>摘要：尽管当前深度学习模型在医学成像领域的表现令人印象深刻，但将X射线图像中的肺部分割任务转移到临床实践中仍然是一项悬而未决的任务。在这项研究中，对胸部X射线图像中肺野分割的全自动框架的性能进行了评估。该框架植根于具有提示功能的Segment Anything模型（SAM）和提供有效提示的You Only Look Once（YOLO）模型的组合。对迁移学习、损失函数和几种验证策略进行了全面评估。这提供了一个完整的基准，使未来的研究能够公平地比较新的细分策略。所取得的结果表明，对传感器、人群、疾病表现、设备处理和成像条件的可变性具有显著的鲁棒性和泛化能力。所提出的框架在计算上是高效的，可以解决多个数据集训练中的偏见，并有可能应用于其他领域和模式。</li>
+<li>主要贡献：<br>我们假设，基于识别边界框作为提示，通过隔离特定的感兴趣区域来消除背景噪声和减轻副作用，有可能显著影响模型在不同尺度的数据集之间进行泛化的能力。我们的研究专门探讨了迁移学习方法，并优化了选择最有效提示的过程，以解开提示和结果之间的关系。<br>（a）基础模型和DL算法的集成。本研究实现了一个将SAM与YOLO模型相结合的全自动框架。这种组合利用了SAM的高性能图像编码器和YOLO的快速功能，提高了不同数据集的分割精度和泛化能力。<br>（b）利用各种基准数据集。我们使用五个基准数据集评估该框架，其中包括具有不同病理学（如新冠肺炎、肺炎和结核病）的胸部X射线，增强了模型的泛化能力和鲁棒性。<br>（c）提供公平的基准。该研究报告了高性能指标，证明了在设备、成像条件、人群和疾病表现存在差异的情况下，所提出方法的有效性、鲁棒性和通用性。作为这一全面评估的结果，为未来研究中的公平比较提供了有价值的基准。<br>（d）解决临床适用性问题。该研究通过关注迁移学习方法和优化选择有效提示的过程来应对临床适用性的挑战。这种方法旨在降低背景噪声并隔离特定的感兴趣区域，显示出在真实临床环境中提高模型性能的潜力。</li>
+<li>数据<br>对每个数据集的分割样本进行了分析。右侧的数字表示每个数据集的左右边界框的宽度和高度。X和Y轴值以归一化单位表示。<br><img src="/2026/01/23/sam-yolo/distribution.png" alt="distribution"></li>
+<li>数据增强</li>
+</ul>
+<ol>
+<li>使用数据增强方法来训练和验证YOLO模型。包括旋转（±10度）、缩放（±0.05）、平移（随机图像向左、向右、向上或向下移动10%）、从左向右翻转（概率为50%）和HSV颜色空间的扰动（调整高达全色调范围的1.5%、饱和度范围的70%和值范围的40%）。</li>
+<li>调整大小，归一化</li>
+<li>对比度受限的自适应直方图均衡化CLAHE（Contrast-limited adaptive histogram equalization），增强对比度</li>
+<li>gamma校正</li>
+</ol>
+<ul>
+<li>方法<br><img src="/2026/01/23/sam-yolo/architecture.png" alt="architecture"><br>上面是所提出的分割框架的架构。对全分辨率肺部放射线照相图像进行预处理，并将其输入You Only Look Once（YOLO）网络，以生成肺野的边界框。预测的边界框用作Segment Anything Model（SAM）模型的提示，该模型接收使用伽马校正和对比度增强（CLAHE）技术构建的堆叠3通道图像作为输入。最后，对SAM网络提供的肺边界进行后处理，以生成最终的分割。<br>SAM：ViT-Base</li>
+<li>后处理<br>SAM模型检测到的ROI经过后处理以生成最终输出。铃木方法涉及通过边界跟踪进行拓扑结构分析，用于从SAM模型提供的预测掩码中删除小的、断开的组件。在此之后，应用开放形态学操作，然后进行闭合操作，以解决假阳性和假阴性预测。这两个操作都使用了3×3的核大小来细化分割结果。</li>
+<li>验证<br>很少有研究将不同的验证方法结合起来，全面描述所提出模型的泛化能力。我们的研究应用了四种不同的验证方法，提供了一个严格而公平的测试平台，用于比较新的肺部分割策略的结果。此外，这种方法有助于评估所提出的方法是否在可能影响放射学图像特征的不同数据源、数据分布和病理学中有效地推广。</li>
+</ul>
+<ol>
+<li>5折交叉验证</li>
+<li>数据集成。使用多个源的数据组成实验数据。</li>
+<li>跨数据集验证，不同的数据集分别作为训练和测试</li>
+<li>基于交叉数据集的半自动验证，两个模型都使用人工标记的标签进行训练。</li>
+</ol>
+<ul>
+<li>讨论<br>Tabel6和Tabel7有什么差别？<br>Table6记录了交叉验证的结果：<br><img src="/2026/01/23/sam-yolo/preformance.png" alt="performance"><br>Table8汇总了所有文献使用的数据集、处理方式以及结果，这里的工作做的很细致。<br><img src="/2026/01/23/sam-yolo/other-methods.png" alt="other-methods"></li>
+</ul>
+<p><a id="article-2"></a></p>
+<h3 id="Intraoperative-Glioma-Segmentation-with-YOLO-SAM-for-Improved-Accuracy-in-Tumor-Resection"><a href="#Intraoperative-Glioma-Segmentation-with-YOLO-SAM-for-Improved-Accuracy-in-Tumor-Resection" class="headerlink" title="Intraoperative Glioma Segmentation with YOLO + SAM for Improved Accuracy in Tumor Resection"></a>Intraoperative Glioma Segmentation with YOLO + SAM for Improved Accuracy in Tumor Resection</h3><ul>
+<li>会议： NeurIPS 2024 Workshop AIM-FM投稿，Arxiv公开</li>
+<li>日期：2024.9</li>
+<li>作者：Algoverse AI Research，中学生（？）</li>
+<li>摘要：胶质瘤是一种常见的恶性脑肿瘤，由于其与健康组织的相似性，给手术带来了重大挑战。术前磁共振成像（MRI）图像在手术过程中通常无效，因为脑移位等因素会改变脑结构和肿瘤的位置。这使得实时术中MRI（ioMRI）变得至关重要，因为它提供了反映这些变化的最新成像，确保了更准确的肿瘤定位和更安全的切除。本文提出了一种结合You Only Look Once Version 8（YOLOv8）和Segment Anything Model Vision Transformer base（SAM ViT-b）的深度学习管道，以增强ioMRI期间的胶质瘤检测和分割。我们的模型是使用脑瘤分割2021（BraTS 2021）数据集训练的，其中包括标准磁共振成像（MRI）图像和模拟ioMRI图像的噪声分割MRI图像。噪声MRI图像对于深度学习管道来说更难分割，但它们更能代表手术条件。我们的模型实现了0.79的Dice相似度系数（Dice）得分，与在无噪声数据上测试的最先进的分割模型具有相当的性能。这一表现证明了该模型在帮助外科医生最大限度地切除肿瘤和改善手术结果方面的潜力。</li>
+<li>方法：<br><img src="/2026/01/23/sam-yolo/2-architecture.png" alt="2-architecture"><br>这个图确实很不美观。</li>
+<li>训练<br>YOLO模型不需要对BraTS数据集进行任何训练，因为它已经在BraTS数据集中进行了预训练。为了微调SAM，将YOLO生成的训练集中每个边界框的中间坐标作为初始提示。SAM在10个迭代周期内对这些数据进行了训练。在SAM模型在常规BraTS图像上完成训练后，YOLO和SAM在BraTS图像的增强版本或模拟ioMRI版本上进行训练。</li>
+</ul>
+<p><a id="article-3"></a></p>
+<h3 id="Multi-Kernel-Estimation-based-Object-Segmentation"><a href="#Multi-Kernel-Estimation-based-Object-Segmentation" class="headerlink" title="Multi Kernel Estimation based Object Segmentation"></a>Multi Kernel Estimation based Object Segmentation</h3>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2025/11/13/yolo-use1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/11/13/yolo-use1/" class="post-title-link" itemprop="url">YOLO使用记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-11-13 17:59:26" itemprop="dateCreated datePublished" datetime="2025-11-13T17:59:26+08:00">2025-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-01-23 18:29:53" itemprop="dateModified" datetime="2026-01-23T18:29:53+08:00">2026-01-23</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="YOLO使用记录"><a href="#YOLO使用记录" class="headerlink" title="YOLO使用记录"></a>YOLO使用记录</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>YOLO太强大了，感觉根本不需要额外添加什么代码，就能完成基础的训练<br>代价是：必须弄懂参数和返回值</p>
+</blockquote>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>找到了公开的半导体缺陷检测数据集，是光学显微镜拍摄的，图像的标注质量很高。<br>这个网站提供的数据集很多，记录：<a target="_blank" rel="noopener" href="https://universe.roboflow.com/wafer-irhuv/wafer-defect-rv1vx/">wafer defect</a><br>支持下载的格式很多，直接使用YOLOv11格式</p>
+<h2 id="数据集格式"><a href="#数据集格式" class="headerlink" title="数据集格式"></a>数据集格式</h2><blockquote>
+<p>YOLO对格式和config等文件要求很严格，所以要使用规定的格式。<br>如果是自有数据集，需要按照格式进行转换。</p>
+</blockquote>
+<ul>
+<li>文件目录：</li>
+<li>train</li>
+<li>test</li>
+<li>valid</li>
+<li>data.yaml</li>
+</ul>
+<p>其中，train, test, valid文件夹内目录：</p>
+<ul>
+<li>images<ul>
+<li>image1.jpg</li>
+<li>image2.jpg</li>
+<li>……</li>
+</ul>
+</li>
+<li>labels<ul>
+<li>image1.txt</li>
+<li>image2.txt</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+<p>data.yaml的格式示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">train: ../train/images  # 指示训练集的路径</span><br><span class="line">val: ../valid/images</span><br><span class="line">test: ../test/images</span><br><span class="line"></span><br><span class="line">nc: 7   # 类别数</span><br><span class="line">names: [&#x27;BLOCK ETCH&#x27;, &#x27;COATING BAD&#x27;, &#x27;PARTICLE&#x27;, &#x27;PIQ PARTICLE&#x27;, &#x27;PO CONTAMINATION&#x27;, &#x27;SCRATCH&#x27;, &#x27;SEZ BURNT&#x27;]    # 类别名</span><br><span class="line"># 中文名称：块状蚀刻、涂层不良、颗粒、PIQ颗粒、PO污染、划痕、SEZ机台过烧（暂不清楚）</span><br><span class="line"></span><br><span class="line">roboflow:   # 网站添加的附加信息</span><br><span class="line">  workspace: wafer-irhuv</span><br><span class="line">  project: wafer-defect-rv1vx</span><br><span class="line">  version: 2</span><br><span class="line">  license: CC BY 4.0</span><br><span class="line">  url: https://universe.roboflow.com/wafer-irhuv/wafer-defect-rv1vx/dataset/2</span><br></pre></td></tr></table></figure>
+<h3 id="label格式"><a href="#label格式" class="headerlink" title="label格式"></a>label格式</h3><p>示例如下，每个标注为一行，<br>第一个数字表示<code>标签类别</code>，后面的小数为归一化后的<code>数据坐标</code>,每个坐标有两个数值，顺序是<code>x1,y1,x2,y2....</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 0.6975 0.3889583333333333 0.6810937499999999 0.3577083333333333 0.579375 0.31375 0.5634375 0.301875 0.516875 0.2779166666666667 0.4840625 0.2558333333333333 0.44749999999999995 0.23645833333333333 0.35890625 0.20770833333333333 0.28500000000000003 </span><br><span class="line">0.19104166666666667 0.19125 0.17854166666666668 0.13093749999999998 0.17583333333333334 0.1159375 0.18104166666666668 0.09828125 0.19749999999999998 0.08796875 0.21416666666666667 0.0840625 0.23208333333333334 0.08203125 0.28 0.08937500000000001 </span><br><span class="line">0.33208333333333334 0.11499999999999999 0.41791666666666666 0.15984375 0.5304166666666666 0.17890625 0.55875 0.19437500000000002 0.5697916666666667 0.21421874999999999 0.574375 0.275 0.5702083333333333 0.40578125 0.5685416666666666 0.49328125 0.574375</span><br><span class="line"> 0.649375 0.574375 0.688125 0.5664583333333333 0.7006249999999999 0.5608333333333333 0.71703125 0.5477083333333332 0.725625......</span><br></pre></td></tr></table></figure>
+
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>训练就一行代码，但是方法里面可以添加很多参数，这个要参考官网文档<a target="_blank" rel="noopener" href="https://docs.ultralytics.com/zh/modes/train/">使用 Ultralytics YOLO 进行模型训练</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ultralytics <span class="keyword">import</span> YOLO</span><br><span class="line"><span class="comment"># model = YOLO(&quot;yolo11n-seg.pt&quot;)</span></span><br><span class="line"><span class="comment"># results = model.train(data=&quot;/data/mazerui/images/Wafer Defect.v2-final.yolov11/data.yaml&quot;, epochs=300, imgsz=512,batch=8,device=[0,1,2,3])    # visualize=True</span></span><br></pre></td></tr></table></figure>
+<p>简单写下现在用到的参数：</p>
+<ul>
+<li>epoch: 轮数</li>
+<li>imgsz: 图像缩放到的大小，长宽都为这个</li>
+<li>batch: batch size</li>
+<li>device: 指定GPU</li>
+<li>visualize: 可以使用tensorboard进行实时监控</li>
+</ul>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><pre><code>             Class     Images  Instances      Box(P          R      mAP50  m
+               all        907        909      0.741      0.727      0.749      0.518       0.69      0.647      0.658      0.364
+        BLOCK ETCH        181        181      0.821      0.713      0.817       0.62      0.826      0.707        0.8      0.576
+       COATING BAD         69         69      0.571      0.599      0.517      0.387      0.509      0.482      0.411      0.222
+          PARTICLE        119        119      0.774      0.866      0.826      0.543        0.8      0.843      0.848      0.524
+      PIQ PARTICLE         86         86      0.733      0.826      0.782       0.47      0.738      0.779      0.751      0.377
+  PO CONTAMINATION        110        111      0.684      0.586      0.686      0.483      0.522      0.396      0.417      0.205
+           SCRATCH        322        323      0.832      0.831      0.898       0.68       0.79      0.771      0.784       0.34
+         SEZ BURNT         20         20      0.771      0.673      0.718      0.445      0.643       0.55      0.598      0.307
+</code></pre>
+<blockquote>
+<p>yolo11n的结果，结果也还行吧，后面补一下测试集</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2025/11/13/wax-moth/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/11/13/wax-moth/" class="post-title-link" itemprop="url">神器的蜡虫</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-11-13 17:19:29" itemprop="dateCreated datePublished" datetime="2025-11-13T17:19:29+08:00">2025-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-01-23 18:29:39" itemprop="dateModified" datetime="2026-01-23T18:29:39+08:00">2026-01-23</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>645</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>最近看到一个新闻，说是有虫子把轮胎咬穿了，感觉很有意思，关注了一下。<br>我觉得这个对环境保护很有帮助，把相关的资料整理一下，以备后面研究。<br>这种虫子叫做大蜡螟，主要寄生于蜂巢当中，以蜂蜡为食。长期的进化使得他们能够分解复杂的芳香烃化合物。<br>还有相关的研究论文，搜了一下谷歌学术，nature、cell都有论文。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/1971988571029205759/answer/1972054841015644380">知乎问答：网传虫子「咬穿」新车</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/638138224">知乎问题：地球上明明有吃塑料的虫子，为什么没有普及？</a><br><a target="_blank" rel="noopener" href="https://www.cell.com/current-biology/fulltext/S0960-9822(17)30231-2?xtor=AL-32280680">Polyethylene bio-degradation by caterpillars of the wax moth Galleria mellonella</a><br>中文：蜡螟毛虫对聚乙烯的生物降解<br><a target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s10924-023-03084-6">Beyond Microbial Biodegradation: Plastic Degradation by Galleria mellonella</a><br>超越微生物降解：蜡虫对塑料的降解蜡虫<br><a target="_blank" rel="noopener" href="https://www.science.org/doi/full/10.1126/sciadv.adi6813">Plastic degradation by insect hexamerins: Near-atomic resolution structures of the polyethylene-degrading proteins from the wax worm saliva</a><br>昆虫六角素对塑料的降解：蜡虫唾液中聚乙烯降解蛋白的近原子分辨率结构  </p>
+<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>塑料微颗粒对人类环境和人体健康有很大的危害，现在塑料难以降解，导致人类花很大的力气进行焚烧或者填埋。<br>如果能够控制塑料的快速降解，那么就不会有那么多的空气、土壤、水源污染。<br>我认为，有必要对这种生物酶进行研究，以解决塑料带来的生态环境问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2025/10/17/hexo-use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/10/17/hexo-use/" class="post-title-link" itemprop="url">hexo使用记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-10-17 15:13:23" itemprop="dateCreated datePublished" datetime="2025-10-17T15:13:23+08:00">2025-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-13 15:15:18" itemprop="dateModified" datetime="2026-07-13T15:15:18+08:00">2026-07-13</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这里总结一下使用hexo的一些操作</p>
+<ul>
+<li>hexo是快速构建博客的工具</li>
+<li>目前使用git同时管理项目代码和部署网页<ul>
+<li>项目代码就是整个项目的同步，对应hexo分支</li>
+<li>部署网页是hexo展示用的web页面，对应master分支</li>
+</ul>
+</li>
+</ul>
+<h2 id="多终端使用"><a href="#多终端使用" class="headerlink" title="多终端使用"></a>多终端使用</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shile/article/details/78714189">备份和多终端更新hexo博客步骤</a><br>方便多个电脑之间的同步</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>安装node.js，作为hexo工作环境；</li>
+<li>node.js命令工具npm，安装hexo</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>hexo其他插件包</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ** --save</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>新增博客推送并同步仓库（向两个分支都推送，主分支master用来展示网页，hexo分支用来备份）</li>
+<li>首先是同步仓库，以及使用hexo推送网页</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 进入user.github.io文件夹，对应本地hexo/blog目录</span><br><span class="line">// 切换到hexo分支</span><br><span class="line">git branch</span><br><span class="line">// 切换到hexo分支</span><br><span class="line">git switch hexo</span><br><span class="line">git checkout hexo   // 或者</span><br><span class="line">git pull origin hexo //本地和远端的融合</span><br><span class="line">hexo new post &quot;new post name&quot;  //写新文章</span><br><span class="line">hexo d -g  //部署，这个是推送到master分支</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下面是推送备份到服务器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br><span class="line">git push origin hexo  //备份到hexo分支</span><br></pre></td></tr></table></figure>
+
+<h2 id="tags中英文问题"><a href="#tags中英文问题" class="headerlink" title="tags中英文问题"></a>tags中英文问题</h2><p>不想牺牲 URL 美观，又想页面展示中文标签，Hexo 可以通过分类 + 标签分离实现：  </p>
+<ol>
+<li>tags 字段只用英文（用于链接、SEO、筛选）  </li>
+<li>新增自定义字段 zh_tags 存放中文，修改主题模板，页面渲染中文标签，底层路由仍为英文</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tags: hexo</span><br><span class="line">zh<span class="emphasis">_tags: Hexo博客搭建教程</span></span><br></pre></td></tr></table></figure>
+<p>路径：<code>themes/next/layout/_macro/post.swig</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">  &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">  &lt;div class=&quot;post-tags&quot;&gt;</span><br><span class="line">    &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">      &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">    &#123;%- endfor %&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>这段是读取 post.tags（英文标签对象），tag.name 输出英文名称。修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">  &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">  &lt;div class=&quot;post-tags&quot;&gt;</span><br><span class="line">    &#123;%- set zhTagArr = post.zh_tags || [] %&#125;</span><br><span class="line">    &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">      &#123;%- set idx = loop.index0 %&#125;</span><br><span class="line">      &#123;%- set showText = zhTagArr[idx] || tag.name %&#125;</span><br><span class="line">      &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; showText &#125;&#125;&lt;/a&gt;</span><br><span class="line">    &#123;%- endfor %&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="草稿使用"><a href="#草稿使用" class="headerlink" title="草稿使用"></a>草稿使用</h2><p>创建草稿</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft &quot;你的草稿标题&quot;</span><br></pre></td></tr></table></figure>
+<p>预览草稿</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure>
+<p>发布草稿</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish post &quot;你的草稿标题&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="bug记录"><a href="#bug记录" class="headerlink" title="bug记录"></a>bug记录</h2><ul>
+<li>上传后博客更新需要等待几分钟，github博客重加载需要缓冲时间</li>
+<li>图片加载不出来，修改图片时链接出现下面的记录</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update link as:--&gt;/.io//111.jpg</span><br></pre></td></tr></table></figure>
+<p>原因是<code>hexo-asset-image</code>库有问题，卸载重装即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-asset-image</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image</span><br></pre></td></tr></table></figure>
+<ul>
+<li>加载图片</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img example.jpg This is an example image %&#125;</span><br><span class="line">&#123;% asset_img &quot;spaced asset.jpg&quot; &quot;spaced title&quot; %&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令<code>hexo d -g</code>报错</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nothing to commit, working tree clean</span><br><span class="line">错误：fatal: unable to access &#x27;https://github.com/***/&#x27;: Recv failure: Connection was reset</span><br><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br><span class="line">at ChildProcess.&lt;anonymous&gt; (D:\hexo_pro\blog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">at ChildProcess.emit (node:events:513:28)</span><br><span class="line">at ChildProcess.cp.emit (D:\hexo_pro\blog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">at Process.ChildProcess._handle.onexit (node:internal/child_process:293:12)</span><br></pre></td></tr></table></figure>
+<p>hexo是将<code>public</code>文件夹内容同步到服务器，需要先md文档转为html等格式，<code>public</code>未更新导致的。<br>重新构建<code>public</code>即可。<br>或者是网不好，重试。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>图片路径索引到其他文章目录<br>原因是文章中出现了大小写共用的问题，批量渲染上下文缓存污染 + 驼峰大写文件名破坏资源匹配。  </p>
+<ol>
+<li>大写驼峰文件名是污染源头<br>Hexo 内部处理文章 slug、资源目录时：<br>大写名称缓存 key 与磁盘目录大小写不匹配，渲染第一篇大写文章后，全局上下文被锁死；<br>后面渲染所有小写横杠文章，图片都会错误复用大写文章的路由前缀。</li>
+<li>hexo-renderer-marked 批量渲染共享上下文漏洞<br>开启 post_asset_folder: true 时，多文章循环渲染共用同一个临时变量，上一篇文章的 permalink、asset_dir 不会重置，直接带到下一篇，路径拼接错乱。<br>只要存在任意一篇纯大写&#x2F;驼峰文章，后面全部文章图片路径都会串到它的目录下。</li>
+</ol>
+<p>解决方法是所有文章名都使用小写。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Riddle Ma</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">26k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:19</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"riddlema/riddlema.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkyODE2MjQ1MDY=","category":"Comments","category_id":"DIC_kwDOEMk_us4DAWKX","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"bottom","loading":"lazy","dark_theme":"dark_dimmed"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<!-- hexo injector body_end start -->
+    <script src="/js/gallery.js" async></script>
+<!-- hexo injector body_end end --></body>
+</html>

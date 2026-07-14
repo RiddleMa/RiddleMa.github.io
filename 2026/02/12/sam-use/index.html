@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"riddlema.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":"night"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":null,"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="SAM已经更新到SAM3了，这里是SAM2的使用介绍SAM2更新过一版，最终版本是SAM2.1版SAM3的使用方法类似，后面研究下；  SAM2自带三个接口文件：  build_sam，模型构建器 sam2_image_predictor，交互式分割预测 automatic_mask_generator，全自动掩码生成器  现在分别介绍： build_sam 模型构建函数，用于对模型进行初始化；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SAM的原理和使用方法">
+<meta property="og:url" content="https://riddlema.github.io/2026/02/12/sam-use/index.html">
+<meta property="og:site_name" content="Riddle的博客">
+<meta property="og:description" content="SAM已经更新到SAM3了，这里是SAM2的使用介绍SAM2更新过一版，最终版本是SAM2.1版SAM3的使用方法类似，后面研究下；  SAM2自带三个接口文件：  build_sam，模型构建器 sam2_image_predictor，交互式分割预测 automatic_mask_generator，全自动掩码生成器  现在分别介绍： build_sam 模型构建函数，用于对模型进行初始化；">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-12T06:57:45.000Z">
+<meta property="article:modified_time" content="2026-02-12T07:01:41.714Z">
+<meta property="article:author" content="Riddle Ma">
+<meta property="article:tag" content="Hexo,Next,编程,后端,技术笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://riddlema.github.io/2026/02/12/sam-use/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://riddlema.github.io/2026/02/12/sam-use/","path":"2026/02/12/sam-use/","title":"SAM的原理和使用方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SAM的原理和使用方法 | Riddle的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+    <link rel="stylesheet" href="/css/gallery.css" media="print" onload="this.media='all'">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="Riddle的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Riddle的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技术随笔 | 生活记录</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-photos"><a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>相册</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-comment fa-fw"></i>留言板</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#build-sam"><span class="nav-number">1.</span> <span class="nav-text">build_sam</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sam2-image-predictor"><span class="nav-number">2.</span> <span class="nav-text">sam2_image_predictor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#automatic-mask-generator"><span class="nav-number">3.</span> <span class="nav-text">automatic_mask_generator</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Riddle Ma"
+      src="/images/myavatar.png">
+  <p class="site-author-name" itemprop="name">Riddle Ma</p>
+  <div class="site-description" itemprop="description">Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://riddlema.github.io/LoveTree/" title="LoveTree → https:&#x2F;&#x2F;riddlema.github.io&#x2F;LoveTree&#x2F;" rel="noopener me"><i class="fas fa-gift fa-fw"></i>LoveTree</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          友情链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.iletter.top/" title="https:&#x2F;&#x2F;blog.iletter.top&#x2F;" rel="noopener" target="_blank">白荼日记</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://riddlema.github.io/2026/02/12/sam-use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Riddle Ma">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Riddle的博客">
+      <meta itemprop="description" content="Riddle Ma 的个人技术博客，分享编程、开发、学习笔记与生活感悟">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SAM的原理和使用方法 | Riddle的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SAM的原理和使用方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-02-12 14:57:45 / 修改时间：15:01:41" itemprop="dateCreated datePublished" datetime="2026-02-12T14:57:45+08:00">2026-02-12</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-book-open"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>602</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>SAM已经更新到SAM3了，这里是SAM2的使用介绍<br>SAM2更新过一版，最终版本是SAM2.1版<br>SAM3的使用方法类似，后面研究下；</p>
+</blockquote>
+<p>SAM2自带三个接口文件：</p>
+<ul>
+<li>build_sam，模型构建器</li>
+<li>sam2_image_predictor，交互式分割预测</li>
+<li>automatic_mask_generator，全自动掩码生成器</li>
+</ul>
+<p>现在分别介绍：</p>
+<h2 id="build-sam"><a href="#build-sam" class="headerlink" title="build_sam"></a>build_sam</h2><ul>
+<li>模型构建函数，用于对模型进行初始化；</li>
+<li>可以指定配置文件<code>sam2.1_hiera_t.yaml</code>和参数文件<code>sam2.1_hiera_tiny.pt</code>；</li>
+</ul>
+<h2 id="sam2-image-predictor"><a href="#sam2-image-predictor" class="headerlink" title="sam2_image_predictor"></a>sam2_image_predictor</h2><ul>
+<li>交互式预测器，需要用户提供 “提示信息”（点、框）来定位目标。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sam2.sam2_image_predictor <span class="keyword">import</span> SAM2ImagePredictor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化模型</span></span><br><span class="line">sam2_model = build_sam2(</span><br><span class="line">    config_file=<span class="string">&quot;sam2_configs/sam2_hiera_l.yaml&quot;</span>,  <span class="comment"># 模型配置文件</span></span><br><span class="line">    checkpoint=<span class="string">&quot;sam2_hiera_large.pt&quot;</span>,             <span class="comment"># 预训练权重</span></span><br><span class="line">    device=torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化预测器（传入已构建的 SAM2 模型）</span></span><br><span class="line">predictor = SAM2ImagePredictor(sam2_model)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载图片并编码</span></span><br><span class="line">image = cv2.imread(<span class="string">&quot;test.jpg&quot;</span>)</span><br><span class="line">predictor.set_image(image)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入提示：比如在 (x=100, y=200) 点一个前景点（目标位置）</span></span><br><span class="line">input_point = np.array([[<span class="number">100</span>, <span class="number">200</span>]])</span><br><span class="line">input_label = np.array([<span class="number">1</span>])  <span class="comment"># 1=前景，0=背景</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成掩码</span></span><br><span class="line">masks, scores, logits = predictor.predict(</span><br><span class="line">    point_coords=input_point,</span><br><span class="line">    point_labels=input_label,</span><br><span class="line">    box = <span class="literal">None</span>,     <span class="comment"># 也可以指定锚框</span></span><br><span class="line">    multimask_output=<span class="literal">False</span>,  <span class="comment"># 只返回最优掩码</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里支持两种形式的指令，<code>point_coords</code>为点，<code>box</code>为锚框，也可以一起使用；</li>
+<li><code>point_coords</code>的大小为(M,2)，<code>box</code>的大小为(1,4)；</li>
+<li><code>point_labels</code>确定点选的是前景&#x2F;背景，0的话就是反选；</li>
+<li>同时使用两种标记的方式<ul>
+<li>框定位目标大致范围 + 点标记目标核心区域（如分割人物时，框住全身 + 点标记脸部）；</li>
+<li>框定位目标 + 点标记背景（label&#x3D;0），排除干扰区域。</li>
+</ul>
+</li>
+</ul>
+<h2 id="automatic-mask-generator"><a href="#automatic-mask-generator" class="headerlink" title="automatic_mask_generator"></a>automatic_mask_generator</h2><p>基于 SAM2 模型的全自动掩码生成器，无需用户提示，自动遍历图片并分割所有可见物体。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sam2.sam2_automatic_mask_generator <span class="keyword">import</span> SAM2AutomaticMaskGenerator</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化自动掩码生成器</span></span><br><span class="line">mask_generator = SAM2AutomaticMaskGenerator(</span><br><span class="line">    sam2_model,</span><br><span class="line">    points_per_side=<span class="number">32</span>,  <span class="comment"># 每边采样点数（越多分割越细，速度越慢）</span></span><br><span class="line">    pred_iou_thresh=<span class="number">0.86</span>, <span class="comment"># 过滤低IOU掩码</span></span><br><span class="line">    stability_score_thresh=<span class="number">0.92</span>,  <span class="comment"># 过滤不稳定掩码</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全自动生成所有物体的掩码</span></span><br><span class="line">masks = mask_generator.generate(image)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果：masks 是列表，每个元素包含 mask（掩码）、bbox（边界框）、score（置信度）等</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;自动分割出 <span class="subst">&#123;<span class="built_in">len</span>(masks)&#125;</span> 个物体&quot;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这种方法原理是使用采样点进行逐点预测，最后合并所有分割的结果；</li>
+<li>采样点越多，速度越慢（实测很慢）；</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/01/23/markdown/" rel="prev" title="markdown使用记录">
+                  <i class="fa fa-angle-left"></i> markdown使用记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/02/12/memae/" rel="next" title="MemAE代码复现及自有数据集测试">
+                  MemAE代码复现及自有数据集测试 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Riddle Ma</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">26k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:19</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"riddlema/riddlema.github.io","repo_id":"MDEwOlJlcG9zaXRvcnkyODE2MjQ1MDY=","category":"Comments","category_id":"DIC_kwDOEMk_us4DAWKX","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"bottom","loading":"lazy","dark_theme":"dark_dimmed"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<!-- hexo injector body_end start -->
+    <script src="/js/gallery.js" async></script>
+<!-- hexo injector body_end end --></body>
+</html>
