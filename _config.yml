@@ -165,3 +165,7 @@ symbols_count_time:
   awl: 2                 # 中文单字平均长度固定2
   wpm: 50               # 中文阅读速度300字/分钟
   suffix: "分钟"
+
+# image_caption:  # 图片题注
+#   enable: true
+#   class_name: img-caption
